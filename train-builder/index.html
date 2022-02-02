@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./railroad.png">
+    <link rel="stylesheet" href="./styles.css">
+    <title>RailRoad Online Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container" style="border: 1px solid black">
+        <div class="controls">
+            <div>
+                <h2>RailRoad Calculator</h2>
+            </div>
+            <!--Difficulty Dropdown-->
+            <div class="right__side__controls">
+                <label for="difficulty" style="margin-right: 10px">Difficulty</label>
+                <select class= "select-custom" name="difficulty">
+                    <option value="0">Casual</option>
+                    <option value="0.25">Easy</option>
+                    <option value="0.5">medium</option>
+                    <option value="075">Hard</option>
+                    <option value="1">Realistic</option>
+                </select>
+                <button id="clear__workspace" class="clear__workspace" data-toggle="tooltip" title="This will clear all workspace">Clear Workspace</button>
+            </div>
+        </div>
+        <div class="views-container">
+        
+            <div class="views">
+            <!--Column1-->
+                <div class="column__one">
+                    <div class="engine__view">
+                        <div class="engine__view-heading">
+                            <h2>Select Engine</h2>
+                            <button class="custom-btn btn-6" id="add__engine">Add Engine</button>
+                        </div>
+                        <div class="engine__view-body" id="engine__view-body">
+                            <div class="engine__list-heading">
+                                <div class="engine__list-engine-heading"><h3>Engine</h3></div>
+                                <div class="engine__list-engine-teffort"><h3>Tractive Effort</h3></div>
+                                <div class="engine__list-engine-eweight"><h3>Engine Weight</h3></div>
+                                <div class="engine__list-engine-tweight"><h3>Tender Weight</h3></div>
+                            </div>
+                            <div class="engine__list" id="engine__list">
+                                
+                            </div>
+                        </div>
+                    </div>
+
+        
+                    <div class="result__view">
+                        <div class="result__view-heading">
+                            <h2>Result</h2>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="column__two">
+                    <div class="cargo__view">
+                        <div class="cargo__view-heading">
+                            <h2>Cargo</h2>
+                            <button class="custom-btn btn-6" id="add__cargo">Add Cargo</button>
+                        </div>
+                        <div class="cargo__view-body">
+                            <div class="cargo__list-heading">
+                                <div class="cargo__list-cargo-heading"><h3>Cargo</h3></div>
+                                <div class="cargo__list-cargo-cartype"><h3>Car Type</h3></div>
+                                <div class="cargo__list-cargo-QTY"><h3>Cargo QTY</h3></div>
+                                <div class="cargo__list-cargo-carnos"><h3>No of Cars</h3></div>
+                                <div class="cargo__list-cargo-loadwt"><h3>Loaded Weight</h3></div>
+                            </div>
+                            <div class="cargo__list" id="cargo__list">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        <!-- <footer>
+            Created by | Amit & Param
+        </footer> -->
+        </div> 
+    </div>
+
+    
+    <script src="./utils/data.js"></script>
+    <script src="./utils/engine.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>   
+
+
+    
