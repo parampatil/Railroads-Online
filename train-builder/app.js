@@ -26,12 +26,10 @@ $addCargo.addEventListener('click', () =>{
     console.log(countCargo)
     //Cargo type
     //create label
-    const cargoLabel1 = document.createElement('label')
-    cargoLabel1.textContent = "Cargo" + countCargo
 
     //create select
-    const cargoSelect = document.createElement('select')
-    cargoSelect.classList.add('select-custom')
+    const  cargoSelect= document.createElement('select')
+    cargoSelect.classList.add('cargoType')
     //create options
     cargoList.forEach(({ cargoType }) => {
         const option = document.createElement('option')
@@ -40,75 +38,59 @@ $addCargo.addEventListener('click', () =>{
         cargoSelect.append(option)
     })
 
-    const subgroupCargo1 = document.createElement('div')
-    //subgroupCargo1.append(cargoLabel1)
-    subgroupCargo1.append(cargoSelect)
-    //subgroupCargo1.classList.add('display__cargo')
-    subgroupCargo1.classList.add('cargo__list-cargo-heading')
+    // const subgroupCargo1 = document.createElement('div')
+    // subgroupCargo1.append(cargoSelect)
+    // subgroupCargo1.classList.add('cargo__list-cargo-heading')
 
-    const cargoLabel2 = document.createElement('label')
-    cargoLabel2.textContent = "Car"
-    const cargoinput1 = document.createElement('input')
-    cargoinput1.value = "None"
-    cargoinput1.style.width = "150px"
-    //cargoinput1.setAttribute('disabled', 'disabled')
 
-    const subgroupCargo2 = document.createElement('div')        
-    //subgroupCargo2.append(cargoLabel2)
-    subgroupCargo2.append(cargoinput1)
-    //subgroupCargo2.classList.add('display__cargo')
-    subgroupCargo2.classList.add('cargo__list-cargo-cartype')
-
-    const cargoLabel3 = document.createElement('label')
-    cargoLabel3.textContent = "Cargo QTY"
     const cargoinput2 = document.createElement('input')
-    cargoinput2.setAttribute('type', 'number')
-    cargoinput2.setAttribute('min', '1')
-    cargoinput2.setAttribute('max', '6')
-    cargoinput2.style.width = '50px'
-    //cargoinput2.value = 6
+    cargoinput2.value = "None"
+    cargoinput2.setAttribute('disabled', 'disabled')
+    cargoinput2.classList.add('carType')
 
-    const subgroupCargo3 = document.createElement('div')        
-    //subgroupCargo3.append(cargoLabel3)
-    subgroupCargo3.append(cargoinput2)
-    //subgroupCargo3.classList.add('display__cargo')
-    subgroupCargo3.classList.add('cargo__list-cargo-QTY')
+    // const subgroupCargo2 = document.createElement('div')        
+    // subgroupCargo2.append(cargoinput2)
+    // subgroupCargo2.classList.add('cargo__list-cargo-cartype')
 
-    //no of cars
     const cargoinput3 = document.createElement('input')
     cargoinput3.setAttribute('type', 'number')
-    cargoinput3.style.width = '50px'
     cargoinput3.setAttribute('min', '1')
-    //cargoinput2.value = 6
+    cargoinput3.setAttribute('max', '6')
+    cargoinput3.classList.add('QTY')
 
-    const subgroupCargo4 = document.createElement('div')        
-    //subgroupCargo4.append(cargoLabel4)
-    subgroupCargo4.append(cargoinput3)
-    //subgroupCargo4.classList.add('display__cargo')
-    subgroupCargo4.classList.add('cargo__list-cargo-carnos')
+    // const subgroupCargo3 = document.createElement('div')        
+    // subgroupCargo3.append(cargoinput3)
+    // subgroupCargo3.classList.add('cargo__list-cargo-QTY')
 
-    //const cargoLabel5 = document.createElement('label')
-    //cargoLabel4.textContent = "Loaded weight"
+    //no of cars
     const cargoinput4 = document.createElement('input')
     cargoinput4.setAttribute('type', 'number')
-    cargoinput4.style.width = '90px'
-    //cargoinput2.value = 6
+    cargoinput4.setAttribute('min', '1')
+    cargoinput4.classList.add('Noofcars')
 
-    const subgroupCargo5 = document.createElement('div')        
-    //subgroupCargo4.append(cargoLabel5)
-    subgroupCargo5.append(cargoinput4)
-    //subgroupCargo4.classList.add('display__cargo')
-    subgroupCargo5.classList.add('cargo__list-cargo-loadwt')
+    // const subgroupCargo4 = document.createElement('div')        
+    // subgroupCargo4.append(cargoinput4)
+    // subgroupCargo4.classList.add('cargo__list-cargo-carnos')
+
+
+    const cargoinput5 = document.createElement('input')
+    cargoinput5.setAttribute('type', 'number')
+    cargoinput5.setAttribute('disabled', 'disabled')
+    cargoinput5.classList.add('Loaded')
+
+    // const subgroupCargo5 = document.createElement('div')        
+    // subgroupCargo5.append(cargoinput5)
+    // subgroupCargo5.classList.add('cargo__list-cargo-loadwt')
 
 
     const cargoGroup = document.createElement('div')
-    cargoGroup.append(subgroupCargo1)
-    cargoGroup.append(subgroupCargo2)
-    cargoGroup.append(subgroupCargo3)
-    cargoGroup.append(subgroupCargo4)
-    cargoGroup.append(subgroupCargo5)
+    cargoGroup.append(cargoSelect)
+    cargoGroup.append(cargoinput2)
+    cargoGroup.append(cargoinput3)
+    cargoGroup.append(cargoinput4)
+    cargoGroup.append(cargoinput5)
     cargoGroup.style.display = "flex"
-    cargoGroup.classList.add('cargo__container')
+    cargoGroup.classList.add('Container')
     $cargoList.append(cargoGroup)
 })
 
@@ -118,15 +100,12 @@ $cargoList.addEventListener('change', (e) => {
         return cargo.cargoType === targetElement;
     })
 
-    const carDisplay = e.target.parentElement.parentElement.childNodes[1].childNodes[0]
+    const carDisplay = e.target.parentElement.childNodes[1]
     carDisplay.value = cargo.frightCar
-    carDisplay.setAttribute('disabled', 'disabled')
 
-    const inputElement = e.target.parentElement.parentElement.childNodes[2].childNodes[0]
+    const inputElement = e.target.parentElement.childNodes[2]
     inputElement.setAttribute('max', cargo.unitPercar)
     inputElement.setAttribute('value', cargo.unitPercar)
-
-    
 })
 
 //function for clear workspace

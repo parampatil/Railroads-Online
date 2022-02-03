@@ -13,12 +13,12 @@
     <div class="container" style="border: 1px solid black">
         <div class="controls">
             <div>
-                <h2>RailRoad Calculator</h2>
+                <h2 style="color: #fff">RailRoad Calculator</h2>
             </div>
             <!--Difficulty Dropdown-->
             <div class="right__side__controls">
-                <label for="difficulty" style="margin-right: 10px">Difficulty</label>
-                <select class= "select-custom" name="difficulty">
+                <label for="difficulty">Difficulty : </label>
+                <select class= "select-custom" style="min-width: 100px;" name="difficulty">
                     <option value="0">Casual</option>
                     <option value="0.25">Easy</option>
                     <option value="0.5">medium</option>
@@ -66,16 +66,18 @@
                             <h2>Cargo</h2>
                             <button class="custom-btn btn-6" id="add__cargo">Add Cargo</button>
                         </div>
-                        <div class="cargo__view-body">
+
+                        <div class = "cargo__view-body">
                             <div class="cargo__list-heading">
-                                <div class="cargo__list-cargo-heading"><h3>Cargo</h3></div>
-                                <div class="cargo__list-cargo-cartype"><h3>Car Type</h3></div>
-                                <div class="cargo__list-cargo-QTY"><h3>Cargo QTY</h3></div>
-                                <div class="cargo__list-cargo-carnos"><h3>No of Cars</h3></div>
-                                <div class="cargo__list-cargo-loadwt"><h3>Loaded Weight</h3></div>
+                                <div class="Container">
+                                    <h1 class="cargoType">Cargo</h1>
+                                    <h1 class="carType">Car Type</h1>
+                                    <h1 class="QTY">Cargo QTY</h1>
+                                    <h1 class="Noofcars">No. of Cars</h1>
+                                    <h1 class="Loaded">Loaded wt.</h1>    
+                                </div>
                             </div>
                             <div class="cargo__list" id="cargo__list">
-                                
                             </div>
                         </div>
                     </div>
