@@ -123,7 +123,7 @@ const cargoList = [
         cargoType: "None",
         unitPercar: 0,
         unitWeight: 0,
-        frightCar: "Nonends"
+        frightCar: "None"
     },
     {
         cargoType: "Logs",

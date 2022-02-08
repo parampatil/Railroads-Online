@@ -2,7 +2,10 @@ const $engine = document.querySelector('#engine')
 const $tractiveEffort = document.querySelector('#tractive-effort')
 const $engines = document.querySelector('#engine__list')
 const $addEngine = document.querySelector('#add__engine')
-let count = 0;
+const $deleteAllEngines = document.querySelector('#delete_all_engine')
+const $engine_delete = document.querySelector('#enngine_delete')
+let count = 0
+let engines__totalwt= 0
 
 const addEngine = () =>{
     count++;
@@ -11,13 +14,8 @@ const addEngine = () =>{
     }
 
     //Engine type
-    //create label
-    // const label = document.createElement('label')
-    // label.textContent = "Engine" + count
-
     //create select
     const select = document.createElement('select')
-    select.classList.add('select-custom')
  
     //create options
     engineList.forEach(({ engine }) => {
@@ -27,60 +25,60 @@ const addEngine = () =>{
         select.append(option)
     })
 
-    const subgroup1 = document.createElement('div')
-    //subgroup1.append(label)
-    subgroup1.append(select)
-    subgroup1.classList.add('display__engine')
-    subgroup1.classList.add('engine__list-engine-heading')
+    // select.classList.add('display__engine')
+    select.classList.add('engine')
 
     /************************************ */
     //tractive effort 
-    // const label2 = document.createElement('label')
-    // label2.textContent = "Tractive Effort"
-    const input = document.createElement('input')
-    input.value = 0
-    input.setAttribute('disabled', 'disabled')
+    //create input to display value
+    const input2 = document.createElement('input')
+    input2.value = 0
+    input2.setAttribute('disabled', 'disabled')
 
-    const subgroup2 = document.createElement('div')
-    //subgroup2.append(label2)
-    subgroup2.append(input)
-    subgroup2.classList.add('display__engine')
-    subgroup2.classList.add('engine__list-engine-teffort')
+    // input2.classList.add('display__engine')
+    input2.classList.add('teffort')
 
     //Engine Weight
-    // const label3 = document.createElement('label')
-    // label3.textContent = "Engine Weight"
+    //create input to display value
     const input3 = document.createElement('input')
     input3.value = 0
     input3.setAttribute('disabled', 'disabled')
 
-    const subgroup3 = document.createElement('div')
-    //subgroup3.append(label3)
-    subgroup3.append(input3)
-    subgroup3.classList.add('display__engine')
-    subgroup3.classList.add('engine__list-engine-eweight')
+    // input3.classList.add('display__engine')
+    input3.classList.add('eweight')
 
     //Tender Weight
-    // const label4 = document.createElement('label')
-    // label4.textContent = "Tender Weight"
+    //create input to display value
     const input4 = document.createElement('input')
     input4.value = 0
     input4.setAttribute('disabled', 'disabled')
+    // input4.style.visibility = 'hidden'
 
-    const subgroup4 = document.createElement('div')
-    //subgroup4.append(label4)
-    subgroup4.append(input4)
-    subgroup4.classList.add('display__engine')
-    subgroup4.classList.add('display__tender')
-    subgroup4.classList.add('engine__list-engine-tweight')
+    // input4.classList.add('display__engine')
+    // input4.classList.add('display__tender')
+    input4.classList.add('tweight')
+
+    //Delete Button
+    //create i tag to delete individual engine
+    const delete_icon = document.createElement('i')
+    delete_icon.classList.add('fas')
+    delete_icon.classList.add('fa-trash')
+    delete_icon.classList.add('engine_del')
+    delete_icon.id = 'engine_delete'
+    delete_icon.style.userSelect = 'auto'
+    delete_icon.style.cursor = 'pointer'
+    delete_icon.addEventListener('click', delete_engine_function)
+    
 
 
     const group = document.createElement('div')
-    group.classList.add('engine__container')
-    group.append(subgroup1)
-    group.append(subgroup2)
-    group.append(subgroup3)
-    group.append(subgroup4)
+    group.classList.add('Container', 'new-Container')
+    // group.classList.add('engine__container')
+    group.append(select)
+    group.append(input2)
+    group.append(input3)
+    group.append(input4)
+    group.append(delete_icon)
     group.style.display = "flex"
     group.style.justifyContent = "space-around"
     //group.style.gap = "15px"
@@ -89,22 +87,43 @@ const addEngine = () =>{
 }
 
 const onEngineSelect = (e) => {
-    const parentElement = e.target.parentElement.parentElement
-    const subgroup4 = parentElement.lastChild
-    subgroup4.style.visibility = 'hidden'
+    const parentElement = e.target.parentElement
+    const input4 = parentElement.childNodes[3]
 
     const engine = engineList.find((engineData) => {
         return engineData.engine === e.target.value
     })
+    e.target.parentElement.childNodes[1].value = engine.teffort
+    e.target.parentElement.childNodes[2].value = engine.engineWeight
 
-    e.target.parentElement.parentElement.childNodes[1].childNodes[0].value = engine.teffort
-    e.target.parentElement.parentElement.childNodes[2].childNodes[0].value = engine.engineWeight
-
+    engines__totalwt = engines__totalwt + engine.engineWeight
   
     if(engine.tenderAvailable){
         
-        subgroup4.style.visibility = 'visible'
-        subgroup4.childNodes[0].value = engine.tenderWeight
+        // input4.style.visibility = 'visible'
+        input4.value = engine.tenderWeight
     }
-    
+    else{
+        // input4.style.visibility = 'visible'
+        input4.value = "0"
+    } 
+}
+
+
+//Delete Engines
+const deleteAllEngines = (e) => {
+    const choice = confirm('Do you want to delete all Engines')
+    if(choice === true) {
+        if($engines.childNodes.length<=1){
+            return alert('No engines in the list')
+        }
+        $engines.innerHTML = ""
+        update_values()
+    }
+}
+
+const delete_engine_function = (e) => {
+    to_delete = e.target.parentElement
+    to_delete.remove()
+    update_values()
 }
