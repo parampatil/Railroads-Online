@@ -32,7 +32,6 @@ const update_values = () =>{
     else{
         update_result()
     }
-    
 }
 
 const update_result = () =>{

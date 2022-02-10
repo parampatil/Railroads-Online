@@ -55,7 +55,6 @@ const update_weightUnit = () => {
 
 //Function to change unit
 const lbs_to_ton = () =>{
-    console.log("lbs to ton")
     //variables for lbs to ton
     let collection_teffort = document.getElementsByClassName("teffort");
     for (let i = 1; i < collection_teffort.length; i++) {
@@ -84,7 +83,6 @@ const lbs_to_ton = () =>{
 }
 
 const ton_to_lbs = () =>{
-    console.log("ton to lbs")
     //variables for ton to lbs
     let collection_teffort = document.getElementsByClassName("teffort");
     for (let i = 1; i < collection_teffort.length; i++) {
