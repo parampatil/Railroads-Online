@@ -2,6 +2,7 @@
 const $resultList = document.querySelector('#result__list')
 const $grade = document.querySelector('#grade')
 const $result_msg = document.querySelector('#result_msg')
+const $weight_toggle = document.querySelector('#lbs_ton')
 
 
 //1 - Train weight
@@ -23,34 +24,50 @@ let curve_resistance = 0.0004;
     //net effort (How much your engine can pull) = Max pull - Total train weight
 
 const update_values = () =>{
-    total_trainwt()
-    total_maxPull()
-    net_effort = max_pull - total_train_weight.toFixed(0)
-    $resultList.childNodes[1].value = total_train_weight.toFixed(0)
-    $resultList.childNodes[3].value = max_pull.toFixed(0)
-
-    if(net_effort > 0){
-        $resultList.childNodes[5].style.color = "rgb(75, 236, 75)"
-        $resultList.childNodes[5].value = net_effort.toFixed(0)
-        console.log($result_msg)
-        $result_msg.style.visibility = "visible"
-        $result_msg.value = "Your train can pull! Have safe journey!"
-        $result_msg.style.color = "rgb(75, 236, 75)"
-    }else if(net_effort < 0){
-        $resultList.childNodes[5].style.color = "red"
-        $resultList.childNodes[5].value = net_effort.toFixed(0)
-        $result_msg.style.visibility = "visible"
-        $result_msg.value = "Your train can't pull! Please add more engines"
-        $result_msg.style.color = "red"
-
-    }else{
-        $resultList.childNodes[5].value =""
+    if (current_weightUnit == "ton"){
+        ton_to_lbs()
+        update_result()
+        lbs_to_ton()
     }
+    else{
+        update_result()
+    }
+    
+}
+
+const update_result = () =>{
     if($engines.innerHTML==="" && $cargoList.innerHTML===""){
         $resultList.childNodes[1].value = ""
         $resultList.childNodes[3].value = ""
         $resultList.childNodes[5].value = ""
         $result_msg.style.visibility = "hidden"
+        $clearWorkspace.style.display = 'none'
+    }
+    else{
+        //calculating all 3 values
+        total_trainwt()
+        total_maxPull()
+        net_effort = max_pull - total_train_weight.toFixed(0)
+
+        //updating values to the screen
+        $resultList.childNodes[1].value = total_train_weight.toFixed(0)
+        $resultList.childNodes[3].value = max_pull.toFixed(0)
+        if(net_effort > 0){
+            $resultList.childNodes[5].style.color = "rgb(75, 236, 75)"
+            $resultList.childNodes[5].value = net_effort.toFixed(0)
+            $result_msg.style.visibility = "visible"
+            $result_msg.value = "Your train can pull! Have safe journey!"
+            $result_msg.style.color = "rgb(75, 236, 75)"
+        }else if(net_effort < 0){
+            $resultList.childNodes[5].style.color = "red"
+            $resultList.childNodes[5].value = net_effort.toFixed(0)
+            $result_msg.style.visibility = "visible"
+            $result_msg.value = "Your train can't pull! Please add more engines"
+            $result_msg.style.color = "red"
+
+        }else{
+            $resultList.childNodes[5].value =""
+        }
     }
 }
 

@@ -98,7 +98,6 @@ const addCargo = () =>{
 }
 
 const onCargoSelect = (e) => {
-
     //0 - cargoType
     //1 - cartype
     //2 - QTY
@@ -107,53 +106,110 @@ const onCargoSelect = (e) => {
 
     //Loaded Weight Formula
     //Loaded = Noofcars * (fright car weight +(QTY * difficulty * unit weight))
-    let targetElement = e.target
-    if(e.target === undefined){
-        targetElement = e
-    }
-    //reference to cargoList array object
-    let cargo = cargoList.find((cargo) =>{
-        return cargo.cargoType === targetElement.parentElement.childNodes[0].value;
-    })
-    // console.log(cargo)
-    //reference to frightList array object
-    let carwt = frightList.find((carwt) =>{
-        return carwt.frightCar === cargo.frightCar;
-    })
 
-    if (targetElement.classList.value == 'cargoType') {
-        if (targetElement.parentElement.childNodes[0].value !== 'None') {
-            //set cartype
-            targetElement.parentElement.childNodes[1].value = cargo.cargoType
+    if (current_weightUnit === 'ton') {
+        ton_to_lbs()
+        let targetElement = e.target
+        if(e.target === undefined){
+            targetElement = e
+        }
+        //reference to cargoList array object
+        let cargo = cargoList.find((cargo) =>{
+            return cargo.cargoType === targetElement.parentElement.childNodes[0].value;
+        })
+        // console.log(cargo)
+        //reference to frightList array object
+        let carwt = frightList.find((carwt) =>{
+            return carwt.frightCar === cargo.frightCar;
+        })
 
-            //set default no of cars
-            targetElement.parentElement.childNodes[3].disabled = false;
-            targetElement.parentElement.childNodes[3].value = 1
+        if (targetElement.classList.value == 'cargoType') {
+            if (targetElement.parentElement.childNodes[0].value !== 'None') {
+                //set cartype
+                targetElement.parentElement.childNodes[1].value = cargo.cargoType
 
-            //Set min/max for QTY
-            targetElement.parentElement.childNodes[2].disabled = false;
-            let cargoqtyDisplay = targetElement.parentElement.childNodes[2]
-            cargoqtyDisplay.setAttribute('max', cargo.unitPercar)
-            cargoqtyDisplay.setAttribute('value', cargo.unitPercar)
+                //set default no of cars
+                targetElement.parentElement.childNodes[3].disabled = false;
+                targetElement.parentElement.childNodes[3].value = 1
 
+                //Set min/max for QTY
+                targetElement.parentElement.childNodes[2].disabled = false;
+                let cargoqtyDisplay = targetElement.parentElement.childNodes[2]
+                cargoqtyDisplay.setAttribute('max', cargo.unitPercar)
+                cargoqtyDisplay.setAttribute('value', cargo.unitPercar)
+
+                //Set Loaded weight
+                targetElement.parentElement.childNodes[4].value = targetElement.parentElement.childNodes[3].value * (carwt.frightCarWeight + (targetElement.parentElement.childNodes[2].value * $difficulty.value * cargo.unitWeight))
+            }
+            else {
+                targetElement.parentElement.childNodes[1].value = ""
+                targetElement.parentElement.childNodes[2].value = ""
+                targetElement.parentElement.childNodes[2].disabled = true;
+                targetElement.parentElement.childNodes[3].value = ""
+                targetElement.parentElement.childNodes[3].disabled = true;
+                targetElement.parentElement.childNodes[4].value = ""
+            }
+        }
+        else{
             //Set Loaded weight
-            targetElement.parentElement.childNodes[4].value = targetElement.parentElement.childNodes[3].value * (carwt.frightCarWeight + (targetElement.parentElement.childNodes[2].value * $difficulty.value * cargo.unitWeight))
+            if (targetElement.parentElement.childNodes[0].value !== 'None'){
+                targetElement.parentElement.childNodes[4].value = targetElement.parentElement.childNodes[3].value * (carwt.frightCarWeight + (targetElement.parentElement.childNodes[2].value * $difficulty.value * cargo.unitWeight))
+            }
         }
-        else {
-            targetElement.parentElement.childNodes[1].value = ""
-            targetElement.parentElement.childNodes[2].value = ""
-            targetElement.parentElement.childNodes[2].disabled = true;
-            targetElement.parentElement.childNodes[3].value = ""
-            targetElement.parentElement.childNodes[3].disabled = true;
-            targetElement.parentElement.childNodes[4].value = ""
-        }
+        lbs_to_ton()
     }
     else{
-        //Set Loaded weight
-        if (targetElement.parentElement.childNodes[0].value !== 'None'){
-            targetElement.parentElement.childNodes[4].value = targetElement.parentElement.childNodes[3].value * (carwt.frightCarWeight + (targetElement.parentElement.childNodes[2].value * $difficulty.value * cargo.unitWeight))
+        let targetElement = e.target
+        if(e.target === undefined){
+            targetElement = e
+        }
+        //reference to cargoList array object
+        let cargo = cargoList.find((cargo) =>{
+            return cargo.cargoType === targetElement.parentElement.childNodes[0].value;
+        })
+        // console.log(cargo)
+        //reference to frightList array object
+        let carwt = frightList.find((carwt) =>{
+            return carwt.frightCar === cargo.frightCar;
+        })
+
+        if (targetElement.classList.value == 'cargoType') {
+            if (targetElement.parentElement.childNodes[0].value !== 'None') {
+                //set cartype
+                targetElement.parentElement.childNodes[1].value = cargo.cargoType
+
+                //set default no of cars
+                targetElement.parentElement.childNodes[3].disabled = false;
+                targetElement.parentElement.childNodes[3].value = 1
+
+                //Set min/max for QTY
+                targetElement.parentElement.childNodes[2].disabled = false;
+                let cargoqtyDisplay = targetElement.parentElement.childNodes[2]
+                cargoqtyDisplay.setAttribute('max', cargo.unitPercar)
+                cargoqtyDisplay.setAttribute('value', cargo.unitPercar)
+
+                //Set Loaded weight
+                targetElement.parentElement.childNodes[4].value = targetElement.parentElement.childNodes[3].value * (carwt.frightCarWeight + (targetElement.parentElement.childNodes[2].value * $difficulty.value * cargo.unitWeight))
+            }
+            else {
+                targetElement.parentElement.childNodes[1].value = ""
+                targetElement.parentElement.childNodes[2].value = ""
+                targetElement.parentElement.childNodes[2].disabled = true;
+                targetElement.parentElement.childNodes[3].value = ""
+                targetElement.parentElement.childNodes[3].disabled = true;
+                targetElement.parentElement.childNodes[4].value = ""
+            }
+        }
+        else{
+            //Set Loaded weight
+            if (targetElement.parentElement.childNodes[0].value !== 'None'){
+                targetElement.parentElement.childNodes[4].value = targetElement.parentElement.childNodes[3].value * (carwt.frightCarWeight + (targetElement.parentElement.childNodes[2].value * $difficulty.value * cargo.unitWeight))
+            }
         }
     }
+
+    
+
 }
 
 
@@ -161,16 +217,16 @@ const onCargoSelect = (e) => {
 const delete_cargo_function = (e) => {
     to_delete = e.target.parentElement
     to_delete.remove()
-    update_values()
+    update_result()
 }
 
 const deleteAllCargo = (e) => {
     const choice = confirm('Do you want to delete all Engines')
     if(choice === true) {
-        if($cargoList.childNodes.length<=1){
+        if($cargoList.childNodes.length<=0){
             return alert('No engines in the list')
         }
         $cargoList.innerHTML = ""
-        update_values()
+        update_result()
     }
 }

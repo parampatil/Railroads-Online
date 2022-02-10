@@ -50,7 +50,7 @@ const addEngine = () =>{
     //Tender Weight
     //create input to display value
     const input4 = document.createElement('input')
-    input4.value = 0
+    input4.value = '0'
     input4.setAttribute('disabled', 'disabled')
     // input4.style.visibility = 'hidden'
 
@@ -88,25 +88,34 @@ const addEngine = () =>{
 
 const onEngineSelect = (e) => {
     const parentElement = e.target.parentElement
-    const input4 = parentElement.childNodes[3]
 
     const engine = engineList.find((engineData) => {
         return engineData.engine === e.target.value
     })
-    e.target.parentElement.childNodes[1].value = engine.teffort
-    e.target.parentElement.childNodes[2].value = engine.engineWeight
 
     engines__totalwt = engines__totalwt + engine.engineWeight
   
-    if(engine.tenderAvailable){
-        
-        // input4.style.visibility = 'visible'
-        input4.value = engine.tenderWeight
+    if (current_weightUnit == "ton") {
+        parentElement.childNodes[1].value = (engine.teffort / 2000).toFixed(2)
+        parentElement.childNodes[2].value = (engine.engineWeight / 2000).toFixed(2)
+        if(engine.tenderAvailable){
+            parentElement.childNodes[3].value = (engine.tenderWeight / 2000).toFixed(2)
+        }
+        else{
+            parentElement.childNodes[3].value = '0'
+        }
     }
     else{
-        // input4.style.visibility = 'visible'
-        input4.value = "0"
-    } 
+        parentElement.childNodes[1].value = engine.teffort
+        parentElement.childNodes[2].value = engine.engineWeight
+        if(engine.tenderAvailable){
+            parentElement.childNodes[3].value = engine.tenderWeight
+        }
+        else{
+            parentElement.childNodes[3].value = '0'
+        }
+    }
+    update_values()
 }
 
 
@@ -114,16 +123,16 @@ const onEngineSelect = (e) => {
 const deleteAllEngines = (e) => {
     const choice = confirm('Do you want to delete all Engines')
     if(choice === true) {
-        if($engines.childNodes.length<=1){
+        if($engines.childNodes.length<=0){
             return alert('No engines in the list')
         }
         $engines.innerHTML = ""
-        update_values()
+        update_result()
     }
 }
 
 const delete_engine_function = (e) => {
     to_delete = e.target.parentElement
     to_delete.remove()
-    update_values()
+    update_result()
 }

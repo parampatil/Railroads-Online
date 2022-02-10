@@ -11,24 +11,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     </head>
-<body onload="test_fun()">
+<body onload="onLoad_fun()">
     <div class="container">
         <div class="controls">
             <div>
-                <h2 style="color: #fff">RailRoad Calculator</h2>
+                <h2 style="color: #fff">RailRoads Online!</h2>
             </div>
             <!--Difficulty Dropdown-->
             <div class="right__side__controls">
                 <label for="difficulty">Difficulty : </label>
-                <select class= "select-custom" style="min-width: 100px;" id="difficulty" name="difficulty">
+                <select class= "select-custom" style="width: 70px;" id="difficulty" name="difficulty">
                     <option value="0">Casual</option>
                     <option value="0.25">Easy</option>
-                    <option value="0.5">medium</option>
+                    <option value="0.5">Medium</option>
                     <option value="075">Hard</option>
                     <option value="1">Realistic</option>
                 </select>
                 <label for="grade">Grade : </label>
-                <select class= "select-custom" style="min-width: 100px;" id="grade" name="grade">
+                <select class= "select-custom" style="width: 30px;" id="grade" name="grade">
                     <option value="0">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -41,7 +41,18 @@
                     <option value="9">9</option>
                     <option value="10">10</option>
                 </select>
+                
                 <button id="clear__workspace" class="clear__workspace" data-toggle="tooltip" title="This will clear all workspace" type="button">Clear Workspace</button>
+
+                <div class="toggle-button-cover">
+                    <div class="button-cover">
+                      <div class="button r" id="button-4">
+                        <input type="checkbox" class="checkbox" id="lbs_ton"/>
+                        <div class="knobs"></div>
+                        <div class="layer"></div>
+                      </div>
+                    </div>
+                  </div>
             </div>
         </div>
         <div class="views-container">
@@ -120,7 +131,7 @@
             </div>
     </div>
     <footer style = "display:flex; flex-direction: row; justify-content: center;">
-        Created by | <a href="#" style="text-decoration:none;">&nbsp Amit &nbsp</a></a> & <a href="https://parampatil.github.io/" style="text-decoration:none;">&nbsp Param</a>
+        Created by | <a href="https://github.com/Amit-Morade" style="text-decoration:none;">&nbsp Amit &nbsp</a></a> & <a href="https://parampatil.github.io/" style="text-decoration:none;">&nbsp Param</a>
     </footer>
 
     
