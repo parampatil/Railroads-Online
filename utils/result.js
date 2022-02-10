@@ -3,6 +3,7 @@ const $resultList = document.querySelector('#result__list')
 const $grade = document.querySelector('#grade')
 const $result_msg = document.querySelector('#result_msg')
 const $weight_toggle = document.querySelector('#lbs_ton')
+const $result_heading_last = document.querySelector('#result_heading_last')
 
 
 //1 - Train weight
@@ -41,6 +42,7 @@ const update_result = () =>{
         $resultList.childNodes[5].value = ""
         $result_msg.style.visibility = "hidden"
         $clearWorkspace.style.display = 'none'
+        $result_heading_last.innerHTML = "How much more you can pull / need to pull"
     }
     else{
         //calculating all 3 values
@@ -57,12 +59,15 @@ const update_result = () =>{
             $result_msg.style.visibility = "visible"
             $result_msg.value = "Your train can pull! Have safe journey!"
             $result_msg.style.color = "rgb(75, 236, 75)"
+            $result_heading_last.innerHTML = "Your train can pull"
+
         }else if(net_effort < 0){
             $resultList.childNodes[5].style.color = "red"
             $resultList.childNodes[5].value = net_effort.toFixed(0)
             $result_msg.style.visibility = "visible"
             $result_msg.value = "Your train can't pull! Please add more engines"
             $result_msg.style.color = "red"
+            $result_heading_last.innerHTML = "Your train will not pull"
 
         }else{
             $resultList.childNodes[5].value =""

@@ -125,6 +125,7 @@ const clearWorkSpace = () => {
     count = 0
     countCargo = 0
     $clearWorkspace.style.display = 'none'
+    update_result()
 }
 
 //eventlisteners - clear workspace
