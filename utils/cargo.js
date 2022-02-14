@@ -128,15 +128,16 @@ const onCargoSelect = (e) => {
                 //set cartype
                 targetElement.parentElement.childNodes[1].value = cargo.cargoType
 
-                //set default no of cars
-                targetElement.parentElement.childNodes[3].disabled = false;
-                targetElement.parentElement.childNodes[3].value = 1
-
                 //Set min/max for QTY
                 targetElement.parentElement.childNodes[2].disabled = false;
                 let cargoqtyDisplay = targetElement.parentElement.childNodes[2]
                 cargoqtyDisplay.setAttribute('max', cargo.unitPercar)
-                cargoqtyDisplay.setAttribute('value', cargo.unitPercar)
+                cargoqtyDisplay.setAttribute('min', 1)
+                cargoqtyDisplay.value = cargo.unitPercar
+
+                //set default no of cars
+                targetElement.parentElement.childNodes[3].disabled = false;
+                targetElement.parentElement.childNodes[3].value = 1
 
                 //Set Loaded weight
                 targetElement.parentElement.childNodes[4].value = targetElement.parentElement.childNodes[3].value * (carwt.frightCarWeight + (targetElement.parentElement.childNodes[2].value * $difficulty.value * cargo.unitWeight))
@@ -186,7 +187,8 @@ const onCargoSelect = (e) => {
                 targetElement.parentElement.childNodes[2].disabled = false;
                 let cargoqtyDisplay = targetElement.parentElement.childNodes[2]
                 cargoqtyDisplay.setAttribute('max', cargo.unitPercar)
-                cargoqtyDisplay.setAttribute('value', cargo.unitPercar)
+                cargoqtyDisplay.setAttribute('min', 1)
+                cargoqtyDisplay.value = cargo.unitPercar
 
                 //Set Loaded weight
                 targetElement.parentElement.childNodes[4].value = targetElement.parentElement.childNodes[3].value * (carwt.frightCarWeight + (targetElement.parentElement.childNodes[2].value * $difficulty.value * cargo.unitWeight))

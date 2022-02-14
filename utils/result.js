@@ -70,6 +70,9 @@ const update_result = () =>{
             $result_heading_last.innerHTML = "Your train will not pull"
 
         }else{
+            $result_heading_last.innerHTML = "How much more you can pull / need to pull"
+            $resultList.childNodes[5].style.color = "white"
+            $result_msg.style.visibility = "hidden"
             $resultList.childNodes[5].value =""
         }
     }
