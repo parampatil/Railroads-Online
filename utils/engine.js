@@ -119,19 +119,30 @@ const onEngineSelect = (e) => {
 }
 
 
+const yesOptionEngine = () => {
+    $modal.style.display = "none"
+    console.log($engines.childNodes.length)
+    $engines.innerHTML = ""
+    update_result()
+}
+
+const noOptionEngine = () => {
+    $modal.style.display = "none"
+}
+
 //Delete Engines
 const deleteAllEngines = (e) => {
-    const choice = confirm('Do you want to delete all Engines')
-    if(choice === true) {
-        if($engines.childNodes.length<=0){
-            return alert('No engines in the list')
-        }
-        $engines.innerHTML = ""
-        update_result()
+    if($engines.childNodes.length<=0){
+        return showModalWindow('Sorry! No engines in the list', 'alert')
     }
+    showModalWindow('Do you want to delete all Engines')
+
+    document.querySelector('#yesChoice').addEventListener('click', yesOptionEngine)
+    document.querySelector('#noChoice').addEventListener('click', noOptionEngine)  
 }
 
 const delete_engine_function = (e) => {
+    console.log(e.target.parentElement)
     to_delete = e.target.parentElement
     to_delete.remove()
     update_result()

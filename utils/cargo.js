@@ -222,13 +222,31 @@ const delete_cargo_function = (e) => {
     update_result()
 }
 
+const yesOptionCargo = () => {
+    $modal.style.display = "none"
+    console.log($cargoList.childNodes.length)
+    $cargoList.innerHTML = ""
+    update_result()
+}
+
+const noOptionCargo = () => {
+    $modal.style.display = "none"
+}
+
 const deleteAllCargo = (e) => {
-    const choice = confirm('Do you want to delete all Engines')
-    if(choice === true) {
-        if($cargoList.childNodes.length<=0){
-            return alert('No engines in the list')
-        }
-        $cargoList.innerHTML = ""
-        update_result()
+
+    if($cargoList.childNodes.length<=0){
+        return showModalWindow('Sorry! No cargo in the list', 'alert')
     }
+
+    showModalWindow('Do you want to delete all Cargo')
+    document.querySelector('#yesChoice').addEventListener('click', yesOptionCargo)
+    document.querySelector('#noChoice').addEventListener('click', noOptionCargo)  
+    // if(choice === true) {
+    //     if($cargoList.childNodes.length<=0){
+    //         return alert('No engines in the list', 'alert')
+    //     }
+    //     $cargoList.innerHTML = ""
+    //     update_result()
+    // }
 }

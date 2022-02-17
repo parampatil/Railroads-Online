@@ -37,6 +37,8 @@ const update_values = () =>{
 
 const update_result = () =>{
     if($engines.innerHTML==="" && $cargoList.innerHTML===""){
+        count = 0
+        countCargo = 0
         $resultList.childNodes[1].value = ""
         $resultList.childNodes[3].value = ""
         $resultList.childNodes[5].value = ""

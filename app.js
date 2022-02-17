@@ -112,43 +112,30 @@ const ton_to_lbs = () =>{
     current_weightUnit = "lbs"
 }
 
-const $modal = document.querySelector('.modal-container')
-const $modalMessage = document.querySelector('.modal-message')
-const $modalCloseBtn = document.querySelector('.modal-close-btn')
-
-$modalCloseBtn.addEventListener('click', () => {
+const yesOption = (e) => {
+    $engines.innerHTML = ""
+    $cargoList.innerHTML = ""
+    // $resultList.childNodes[1].value = ""
+    // $resultList.childNodes[3].value = ""
+    // $resultList.childNodes[5].value = ""
+    // $result_msg.style.visibility = 'hidden'
+    count = 0
+    countCargo = 0
     $modal.style.display = "none"
-})
-
-const showModalWindow = function (message) {
-    $modal.style.display = "block"
-    $modal.style.zIndex = "100"
-    $modalMessage.innerHTML = message 
+    // $clearWorkspace.style.display = 'none'
+    update_result() 
 }
 
+const noOption = () => {
+    $modal.style.display = "none"
+}
 
 //function for clear workspace
 const clearWorkSpace = () => {
 
     showModalWindow('This will delete all data. Do you want to continue?')
-
-    document.querySelector('#yesChoice').addEventListener('click', () => {
-        $engines.innerHTML = ""
-        $cargoList.innerHTML = ""
-        $resultList.childNodes[1].value = ""
-        $resultList.childNodes[3].value = ""
-        $resultList.childNodes[5].value = ""
-        $result_msg.style.visibility = 'hidden'
-        count = 0
-        countCargo = 0
-        $modal.style.display = "none"
-        $clearWorkspace.style.display = 'none'
-        update_result()
-    })
-
-    document.querySelector('#noChoice').addEventListener('click', () => {
-        $modal.style.display = "none"
-    })  
+    document.querySelector('#yesChoice').addEventListener('click', yesOption)
+    document.querySelector('#noChoice').addEventListener('click', noOption)  
 }
 
 //eventlisteners - clear workspace
