@@ -531,6 +531,78 @@ footer {
     
 }
 
+/* modal styles */
+.modal-container {
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: fixed;
+  background-color: rgb(235, 235, 235, 0.5);
+}
+
+.modal-flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.modal-content {
+  background-color: aliceblue;
+  border-radius: 5px;
+  border: 1px solid red;
+  position: relative;
+}
+
+.modal-close-btn {
+  position: absolute;
+  right: 5px;
+  top: 0;
+  font-size: 35px;
+  color: rgb(77, 77, 77);
+  transition: 0.2s;
+}
+
+.modal-close-btn:hover {
+  cursor: pointer;
+  color: black;
+  font-weight: bolder;
+  transition: 0.2s;
+}
+
+.modal-message {
+  display: block;
+  margin: 20px;
+  margin-top: 60px;
+  min-width: 150px;
+  max-width: 300px;
+}
+
+
+.modalBtns {
+  display: flex;
+  padding: 20px 0px;
+  justify-content: flex-end;
+}
+
+.modalBtns button {
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.modalBtns .yesChoice:hover {
+  background-color: rgb(243, 34, 34);
+  color: #ffffff;
+}
+
+.modalBtns .noChoice:hover {
+  background-color: rgb(47, 245, 47);
+  color: #ffffff;
+}
+
+
+
   /* Select */
    .select-custom {
     height: 25px;
