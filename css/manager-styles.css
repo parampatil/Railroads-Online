@@ -47,18 +47,6 @@ body {
   display: none;
 }
 
-@media screen and (max-width: 992px) {
-  body {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    width: 100vw;
-    height: 100vh;
-    overflow-y: overlay;
-    font-family: "Lato", sans-serif;
-  }
-}
-
 @media screen and (max-width: 900px) {
   body {
     display: flex;
@@ -73,18 +61,14 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
   .viewport-container {
     display: none !important;
   }
-
-  /* .mobile-msg {
-    display: block !important;
-    text-align: center;
-    position: relative;
-    left: 20px;
-    top: 20px;
-    width: 65vw;
-  } */
 
   .mobile-msg {
     display: flex;
@@ -93,23 +77,21 @@ body {
   }
 
   .mobile-view-msg {
-    flex-grow: 1;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     text-align: center;
     justify-content: center;
     align-items: center;
     padding: 20px;
     font-size: 25px;
     letter-spacing: 5px;
+    flex-grow: 1;
   }
 
   .open {
     display: none !important;
   }
 }
-
-
 
 .viewport-container {
   display: flex;

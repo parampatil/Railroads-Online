@@ -35,7 +35,6 @@ body {
   display: none;
 }
 
-
 @media screen and (max-width: 900px) {
   body {
     display: flex;
@@ -54,14 +53,14 @@ body {
     display: none !important;
   }
 
-  /* .mobile-msg {
-    display: block !important;
-    text-align: center;
-    position: relative;
-    left: 20px;
-    top: 20px;
-    width: 70vw;
-  } */
+  body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  .viewport-container {
+    display: none !important;
+  }
 
   .mobile-msg {
     display: flex;
@@ -70,18 +69,18 @@ body {
   }
 
   .mobile-view-msg {
-    flex-grow: 1;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     text-align: center;
     justify-content: center;
     align-items: center;
     padding: 20px;
     font-size: 25px;
     letter-spacing: 5px;
+    flex-grow: 1;
+
   }
 }
-
 
 .viewport-container {
   display: flex;

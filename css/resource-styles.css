@@ -80,19 +80,26 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
   }
-
   .viewport-container {
     display: none !important;
-    overflow-x: hidden;
   }
 
   .mobile-msg {
-    display: block !important;
+    display: flex !important;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .mobile-view-msg {
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    position: relative;
-    left: 20px;
-    top: 20px;
-    width: 70vw;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-size: 25px;
+    letter-spacing: 5px;
+    flex-grow: 1;
   }
 }
 
