@@ -54,6 +54,43 @@ body {
     font-family: "Lato", sans-serif;
   }
 }
+
+@media screen and (max-width: 900px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: overlay;
+    font-family: "Lato", sans-serif;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .viewport-container {
+    display: none !important;
+  }
+
+  .mobile-msg {
+    display: block !important;
+    text-align: center;
+    position: relative;
+    left: 20px;
+    top: 20px;
+    width: 65vw;
+  }
+
+  .open {
+    display: none !important;
+  }
+}
+
+.mobile-msg {
+  display: none;
+}
+
 .viewport-container {
   display: flex;
   flex-grow: 1;

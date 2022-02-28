@@ -75,6 +75,31 @@ body {
   }
 }
 
+@media only screen and (max-width: 600px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  .viewport-container {
+    display: none !important;
+    overflow-x: hidden;
+  }
+
+  .mobile-msg {
+    display: block !important;
+    text-align: center;
+    position: relative;
+    left: 20px;
+    top: 20px;
+    width: 70vw;
+  }
+}
+
+.mobile-msg {
+  display: none;
+}
+
 .viewport-container {
   display: flex;
   flex-grow: 1;
