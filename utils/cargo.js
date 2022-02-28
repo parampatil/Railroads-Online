@@ -2,8 +2,6 @@
 const $addCargo = document.querySelector('#add__cargo')
 const $cargoList = document.querySelector('#cargo__list')
 const $difficulty = document.querySelector('#difficulty')
-const $deleteAllCargo = document.querySelector('#delete_all_cargo')
-const $cargo_delete = document.querySelector('#cargo_delete')
 let countCargo = 0
 let cargo_totalwt=0
 
@@ -13,7 +11,6 @@ const addCargo = () =>{
         $clearWorkspace.style.display = 'block'
     }
 
-    // console.log(countCargo)
     //Cargo type
     //create label
 
@@ -34,7 +31,7 @@ const addCargo = () =>{
 
 
     const cargoinput2 = document.createElement('input')
-    cargoinput2.value = "None"
+    cargoinput2.value = ""
     cargoinput2.setAttribute('disabled', 'disabled')
     cargoinput2.classList.add('carType')
 
@@ -44,7 +41,7 @@ const addCargo = () =>{
 
     const cargoinput3 = document.createElement('input')
     cargoinput3.setAttribute('type', 'number')
-    cargoinput3.setAttribute('min', '1')
+    cargoinput3.setAttribute('min', '0')
     cargoinput3.setAttribute('max', '6')
     cargoinput3.setAttribute('disabled', 'disabled')
     cargoinput3.classList.add('QTY')
@@ -117,14 +114,14 @@ const onCargoSelect = (e) => {
         let cargo = cargoList.find((cargo) =>{
             return cargo.cargoType === targetElement.parentElement.childNodes[0].value;
         })
-        // console.log(cargo)
+        
         //reference to frightList array object
         let carwt = frightList.find((carwt) =>{
             return carwt.frightCar === cargo.frightCar;
         })
 
         if (targetElement.classList.value == 'cargoType') {
-            if (targetElement.parentElement.childNodes[0].value !== 'None') {
+            if (targetElement.parentElement.childNodes[0].value !== 'Select Cargo') {
                 //set cartype
                 targetElement.parentElement.childNodes[1].value = cargo.cargoType
 
@@ -132,7 +129,7 @@ const onCargoSelect = (e) => {
                 targetElement.parentElement.childNodes[2].disabled = false;
                 let cargoqtyDisplay = targetElement.parentElement.childNodes[2]
                 cargoqtyDisplay.setAttribute('max', cargo.unitPercar)
-                cargoqtyDisplay.setAttribute('min', 1)
+                cargoqtyDisplay.setAttribute('min', 0)
                 cargoqtyDisplay.value = cargo.unitPercar
 
                 //set default no of cars
@@ -153,7 +150,7 @@ const onCargoSelect = (e) => {
         }
         else{
             //Set Loaded weight
-            if (targetElement.parentElement.childNodes[0].value !== 'None'){
+            if (targetElement.parentElement.childNodes[0].value !== 'Select Cargo'){
                 targetElement.parentElement.childNodes[4].value = targetElement.parentElement.childNodes[3].value * (carwt.frightCarWeight + (targetElement.parentElement.childNodes[2].value * $difficulty.value * cargo.unitWeight))
             }
         }
@@ -168,14 +165,14 @@ const onCargoSelect = (e) => {
         let cargo = cargoList.find((cargo) =>{
             return cargo.cargoType === targetElement.parentElement.childNodes[0].value;
         })
-        // console.log(cargo)
+        
         //reference to frightList array object
         let carwt = frightList.find((carwt) =>{
             return carwt.frightCar === cargo.frightCar;
         })
 
         if (targetElement.classList.value == 'cargoType') {
-            if (targetElement.parentElement.childNodes[0].value !== 'None') {
+            if (targetElement.parentElement.childNodes[0].value !== 'Select Cargo') {
                 //set cartype
                 targetElement.parentElement.childNodes[1].value = cargo.cargoType
 
@@ -187,7 +184,7 @@ const onCargoSelect = (e) => {
                 targetElement.parentElement.childNodes[2].disabled = false;
                 let cargoqtyDisplay = targetElement.parentElement.childNodes[2]
                 cargoqtyDisplay.setAttribute('max', cargo.unitPercar)
-                cargoqtyDisplay.setAttribute('min', 1)
+                cargoqtyDisplay.setAttribute('min', 0)
                 cargoqtyDisplay.value = cargo.unitPercar
 
                 //Set Loaded weight
@@ -204,49 +201,17 @@ const onCargoSelect = (e) => {
         }
         else{
             //Set Loaded weight
-            if (targetElement.parentElement.childNodes[0].value !== 'None'){
+            if (targetElement.parentElement.childNodes[0].value !== 'Select Cargo'){
                 targetElement.parentElement.childNodes[4].value = targetElement.parentElement.childNodes[3].value * (carwt.frightCarWeight + (targetElement.parentElement.childNodes[2].value * $difficulty.value * cargo.unitWeight))
             }
         }
     }
-
-    
-
+    update_values()
 }
-
 
 //Delete Cargo
 const delete_cargo_function = (e) => {
     to_delete = e.target.parentElement
     to_delete.remove()
     update_result()
-}
-
-const yesOptionCargo = () => {
-    $modal.style.display = "none"
-    console.log($cargoList.childNodes.length)
-    $cargoList.innerHTML = ""
-    update_result()
-}
-
-const noOptionCargo = () => {
-    $modal.style.display = "none"
-}
-
-const deleteAllCargo = (e) => {
-
-    if($cargoList.childNodes.length<=0){
-        return showModalWindow('Sorry! No cargo in the list', 'alert')
-    }
-
-    showModalWindow('Do you want to delete all Cargo')
-    document.querySelector('#yesChoice').addEventListener('click', yesOptionCargo)
-    document.querySelector('#noChoice').addEventListener('click', noOptionCargo)  
-    // if(choice === true) {
-    //     if($cargoList.childNodes.length<=0){
-    //         return alert('No engines in the list', 'alert')
-    //     }
-    //     $cargoList.innerHTML = ""
-    //     update_result()
-    // }
 }

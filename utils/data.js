@@ -1,12 +1,12 @@
 // By default weights are in pounds.
 const engineList = [
     {
-        engine: "NONE",
-        teffort: 0,
-        engineWeight: 0,
-        engineWeightTon: 0,
-        tenderWeight: 0,
-        tenderWeightTon: 0,
+        engine: "Select Engine",
+        teffort: "",
+        engineWeight: "",
+        engineWeightTon: "",
+        tenderWeight: "",
+        tenderWeightTon: "",
         tenderAvailable: false
     },
     {
@@ -120,10 +120,10 @@ const frightList = [
 //CargoList container
 const cargoList = [
     {
-        cargoType: "None",
+        cargoType: "Select Cargo",
         unitPercar: 0,
         unitWeight: 0,
-        frightCar: "None"
+        frightCar: ""
     },
     {
         cargoType: "Logs",

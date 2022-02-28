@@ -4,7 +4,11 @@ const $grade = document.querySelector('#grade')
 const $result_msg = document.querySelector('#result_msg')
 const $weight_toggle = document.querySelector('#lbs_ton')
 const $result_heading_last = document.querySelector('#result_heading_last')
-
+const $kg = document.querySelector('#kg')
+const $pounds = document.querySelector('#pounds')
+const $train_weight_progress = document.querySelector('#progress-bar-trainweight')
+const $max_pull_progress = document.querySelector('#progress-bar-maxpull')
+const $progress_div = document.querySelector('#progress-div')
 
 //1 - Train weight
 //3 - Engine can pull
@@ -17,36 +21,36 @@ let rolling_resistance = 0.004;
 let grade_resistance = 0.01;
 let curve_resistance = 0.0004;
 
-
-
 //Formula:
-    //Total train Weight = All engine weight + tender weight + cargo loaded weight
-    //max pull( Your engine can pull) = (sum of all tractive effort) / (grade * grade resistance + rolling resistance) - All engine weight + tender weight
-    //net effort (How much your engine can pull) = Max pull - Total train weight
+//Total train Weight = All engine weight + tender weight + cargo loaded weight
+//max pull( Your engine can pull) = (sum of all tractive effort) / (grade * grade resistance + rolling resistance) - All engine weight + tender weight
+//net effort (How much your engine can pull) = Max pull - Total train weight
 
-const update_values = () =>{
-    if (current_weightUnit == "ton"){
+const update_values = () => {
+    if (current_weightUnit == "ton") {
         ton_to_lbs()
         update_result()
         lbs_to_ton()
     }
-    else{
+    else {
         update_result()
     }
 }
 
-const update_result = () =>{
-    if($engines.innerHTML==="" && $cargoList.innerHTML===""){
+const update_result = () => {
+    if ($engines.innerHTML == "" && $cargoList.innerHTML == "") {
         count = 0
         countCargo = 0
         $resultList.childNodes[1].value = ""
         $resultList.childNodes[3].value = ""
         $resultList.childNodes[5].value = ""
+        $resultList.childNodes[7].value = ""
         $result_msg.style.visibility = "hidden"
         $clearWorkspace.style.display = 'none'
         $result_heading_last.innerHTML = "How much more you can pull / need to pull"
+        $progress_div.style.visibility = 'hidden'
     }
-    else{
+    else {
         //calculating all 3 values
         total_trainwt()
         total_maxPull()
@@ -55,34 +59,60 @@ const update_result = () =>{
         //updating values to the screen
         $resultList.childNodes[1].value = total_train_weight.toFixed(0)
         $resultList.childNodes[3].value = max_pull.toFixed(0)
-        if(net_effort > 0){
+        if (net_effort > 0) {
             $resultList.childNodes[5].style.color = "rgb(75, 236, 75)"
             $resultList.childNodes[5].value = net_effort.toFixed(0)
+            $resultList.childNodes[7].style.color = "rgb(75, 236, 75)"
+            $resultList.childNodes[7].value = (total_train_weight / max_pull * 100).toFixed(0) + "%"
             $result_msg.style.visibility = "visible"
             $result_msg.value = "Your train can pull! Have safe journey!"
             $result_msg.style.color = "rgb(75, 236, 75)"
-            $result_heading_last.innerHTML = "Your train can pull"
+            $result_heading_last.innerHTML = "You can pull more"
 
-        }else if(net_effort < 0){
+            $progress_div.style.visibility = 'visible'
+            $train_weight_progress.style.width = (total_train_weight / max_pull * 100).toFixed(0) + "%"
+            if (total_train_weight / max_pull * 100 > 80) {
+                $train_weight_progress.style.backgroundColor = "rgb(255, 165, 0)"
+            }else{
+            $train_weight_progress.style.backgroundColor = "rgb(75, 236, 75)"
+            }
+            $max_pull_progress.style.width = (max_pull / max_pull * 100).toFixed(0) + "%"
+            $max_pull_progress.style.backgroundColor = "rgb(75, 236, 75)"
+
+        } else if (net_effort < 0) {
             $resultList.childNodes[5].style.color = "red"
             $resultList.childNodes[5].value = net_effort.toFixed(0)
+            $resultList.childNodes[7].style.color = "red"
+            if (max_pull <= 0) {
+                $resultList.childNodes[7].value = ""
+            }
+            else {
+                $resultList.childNodes[7].value = (total_train_weight / max_pull * 100).toFixed(0) + "%"
+            }
             $result_msg.style.visibility = "visible"
             $result_msg.value = "Your train can't pull! Please add more engines"
             $result_msg.style.color = "red"
-            $result_heading_last.innerHTML = "Your train will not pull"
-
-        }else{
+            $result_heading_last.innerHTML = "Your train needs to pull more"
+            
+            $progress_div.style.visibility = 'visible'
+            $train_weight_progress.style.width = (total_train_weight / total_train_weight * 100).toFixed(0) + "%"
+            $max_pull_progress.style.width = (max_pull / total_train_weight * 100).toFixed(0) + "%"
+            $train_weight_progress.style.backgroundColor = "rgb(255, 0, 0)"
+            $max_pull_progress.style.backgroundColor = "rgb(255, 165, 0)"
+        } else {
             $result_heading_last.innerHTML = "How much more you can pull / need to pull"
             $resultList.childNodes[5].style.color = "white"
             $result_msg.style.visibility = "hidden"
-            $resultList.childNodes[5].value =""
+            $resultList.childNodes[5].value = ""
+            $resultList.childNodes[7].value = ""
+            $progress_div.style.visibility = 'hidden'
         }
     }
 }
 
 
 //Function to calculate total train weight
-const total_trainwt = () =>{
+const total_trainwt = () => {
     //Total train Weight = All engine weight + tender weight + cargo loaded weight
 
     //variables for total train weight
@@ -108,12 +138,12 @@ const total_trainwt = () =>{
         total_cargoWeight = total_cargoWeight + Number(collection_Loaded[i].value)
     }
 
-    total_train_weight = total_engineWeight + total_tenderWeight + total_cargoWeight 
+    total_train_weight = total_engineWeight + total_tenderWeight + total_cargoWeight
 
     return total_train_weight
 }
 
-const total_maxPull = () =>{
+const total_maxPull = () => {
     //max pull( Your engine can pull) = (sum of all tractive effort) / (grade * grade resistance + rolling resistance) - All engine weight + tender weight
 
     //variables for max pull

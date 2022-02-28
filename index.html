@@ -1,166 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./railroad.png">
-    <link rel="stylesheet" href="./styles.css">
+    <title>RailRoad Online!</title>
+
+    <link rel="icon" href="./images/railroad.png">
+
+    <link rel="stylesheet" href="./css/home-styles.css">
+    <!-- <link rel="stylesheet" href="./css/styles.css"> -->
     <link rel="stylesheet" href="./css/buttons.css">
-    <title>RailRoad Online Calculator</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    </head>
-<body onload="onLoad_fun()">
-    <!-- modal content -->
-    <div class="modal-container">
-        <div class="modal-flex-container">
-            <div class="modal-content">
-                <span class="modal-close-btn">&times</span>
-                <span class="modal-message"></span>
-                <div class="modalBtns">
-                    <button id="yesChoice" class="yesChoice">Yes</button>
-                    <button id="noChoice" class="noChoice">NO</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
 
+</head>
 
-
-
-    <div class="container">
+<body>
+    <div class="viewport-container">
         <div class="controls">
             <div>
-                <h2 style="color: #fff">RailRoads Online!</h2>
+                <h2><a href="https://github.com/parampatil/Railroads-Online">RailRoads Online!</a></h2>
             </div>
-            <!--Difficulty Dropdown-->
-            <div class="right__side__controls">
-                <label for="difficulty">Difficulty : </label>
-                <select class= "select-custom" style="width: 70px;" id="difficulty" name="difficulty">
-                    <option value="0">Casual</option>
-                    <option value="0.25">Easy</option>
-                    <option value="0.5">Medium</option>
-                    <option value="075">Hard</option>
-                    <option value="1">Realistic</option>
-                </select>
-                <label for="grade">Grade : </label>
-                <select class= "select-custom" style="width: 30px;" id="grade" name="grade">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                
-                <button id="clear__workspace" class="clear__workspace" data-toggle="tooltip" title="This will clear all workspace" type="button">Clear Workspace</button>
 
-                <div class="toggle-button-cover">
-                    <div class="button-cover">
-                      <div class="button r" id="button-4">
-                        <input type="checkbox" class="checkbox" id="lbs_ton"/>
-                        <div class="knobs"></div>
-                        <div class="layer"></div>
-                      </div>
-                    </div>
-                  </div>
+            <!-- <div class="page-heading">
+                <h2>Home</h2>
+            </div> -->
+            <div class="right__side__controls">
+                <div id="menuToggle">
+                    <input type="checkbox" />
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <ul id="menu">
+                        <a href="index.html">
+                            <li>Home</li>
+                        </a>
+                        <a href="railroads_manager.html">
+                            <li>Railroads-Online Manager</li>
+                        </a>
+                        <a href="resource-calculator.html">
+                            <li>Resource Calculator</li>
+                        </a>
+                        <a href="https://github.com/parampatil/Railroads-Online" target="_blank">
+                            <li>Github Repository</li>
+                        </a>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="views-container">
-        
-            <div class="views">
-            <!--Column1-->
-                <div class="column__one">
-                    <div class="engine__view">
-                        <div class="engine__view-heading">
-                            <h2>Select Engine</h2>
-                            <button class="custom-button" id="add__engine">Add Engine</button>
-                        </div>
-
-                        <div class = "engine__view-body">
-                                <div class="Container">
-                                    <h1 class="engine">Engine</h1>
-                                    <h1 class="teffort">Tractive Effort</h1>
-                                    <h1 class="eweight">Engine Weight</h1>
-                                    <h1 class="tweight">Tender Weight</h1>
-                                    <h1 class="engine_del"><i id="delete_all_engine" class="fas fa-trash" style="user-select: auto;"></i></h1>
-                                </div>
-                            <div id="engine__list">
-                            </div>
-                        </div>
-
-                    </div>
-
-        
-                    <div class="result__view">
-                        <div class="result__view-heading">
-                            <h2>Result</h2>
-                        </div>
-                        <div class="result__view-body">
-                            <div class="Container">
-                                <h1 class="train-weight">Train Weight</h1>
-                                <h1 class="max-pull">Your Engine can Pull</h1>
-                                <h1 class="net-pull" id="result_heading_last">How much more you can pull / need to pull</h1>
-                            </div>
-                            <div class="Container" id="result__list">
-                                <input disabled class="train-weight" id="result__train-weight">
-                                <input disabled class="max-pull" id="result__max-pull">
-                                <input disabled class="net-pull" id="result__net-pull">
-                            </div>
-                            <div class="result_msg-div">
-                                <input type="text" class="result_msg" id="result_msg">
-                            </div>
-                        </div>  
-                    </div>
-                    
-
-                </div>
-
-                <div class="column__two">
-                    <div class="cargo__view">
-                        <div class="cargo__view-heading">
-                            <h2>Cargo</h2>
-                            <button class="custom-button" id="add__cargo">Add Cargo</button>
-                        </div>
-
-                        <div class = "cargo__view-body">
-                            <div class="cargo__list-heading">
-                                <div class="Container">
-                                    <h1 class="cargoType">Cargo</h1>
-                                    <h1 class="carType">Car Type</h1>
-                                    <h1 class="QTY">Cargo QTY</h1>
-                                    <h1 class="Noofcars">No. of Cars</h1>
-                                    <h1 class="Loaded">Loaded wt.</h1>
-                                    <h1 class="cargo_del"><i id="delete_all_cargo" class="fas fa-trash" style="user-select: auto;"></i></h1>
-                                </div>
-                            </div>
-                            <div id="cargo__list">
-                            </div>
-                        </div>
-                    </div>
-                </div> 
+        <div class="Intro">
+            <div class = "intro-text">
+                <h1>RailRoads Online!</h1>
+                <h2>A web application for the game RailRoads Online!</h2>
+                <h3>Developed by Param Patil & Amit Morade</h3>
             </div>
-    </div>
-    <footer style = "display:flex; flex-direction: row; justify-content: center;">
-        Created by : <a href="https://github.com/Amit-Morade" style="text-decoration:none; color: yellow;">&nbsp Amit &nbsp</a></a> & <a href="https://parampatil.github.io/" style="text-decoration:none; color: yellow;">&nbsp Param</a>
-    </footer>
+            <div class="intro-video">
+                <video width="100%" style="margin-top: -50px" autoplay loop muted>
+                    <source src="./videos/home_page video.mp4" type="video/webm">
+                </video>
+            </div>
+            <a href="#facilities">
+                <svg class="arrows">
+                    <path class="a1" d="M0 0 L30 32 L60 0"></path>
+                    <path class="a2" d="M0 20 L30 52 L60 20"></path>
+                    <path class="a3" d="M0 40 L30 72 L60 40"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="facilities" id="facilities">
+            <h2 class="facilities-heading">FACILITIES</h2>
+            <a href="railroads_manager.html">
+                <div class="facilities__manager" style="padding: 20px;">
+                    <h2>Railroads-Online! Manager</h2>
+                    <img src="images/Manager_ss.png" style="border-radius: 10px; width: 100%; margin: 20px 0px;" alt="Railroads Manager">
+                    <p style="letter-spacing: 1px;color: white; font-family: lato; font-size: 1.3vw;">
+                        Use this manager to find the right type of engine to pull required load or vice-versa. Optimise your load with available train type. Plan your trip now! </p>
+                </div>
+            </a>
+            <a href="resource-calculator.html">
+                <div class="facilities__resource" style="padding: 20px;">
+                    <h2>Resource Calculator</h2>
+                    <img src="images/Resource_ss.png" style="border-radius: 10px; width: 100%; margin: 20px 0px;" alt="Railroads Resource Calculator">
+                    <p style="letter-spacing: 1px;color: white; font-family: lato; font-size: 1.3vw;">
+                        Use this Resource Calculator to find the right input output ratio for your train. Find the right no of cars needed. Plan your trip now! </p>
+                    </p>
+                </div>
+            </a>
+        </div>
+        
+        <div class="other-facilities">
+            <a href="https://minizwerg.online/">
+                <div class="other-facilities__mapper">
+                    <h2>Minizwerg's Mapper</h2>
+                </div>
+            </a>
+            <a href="https://tom-90.github.io/RROx/">
+                <div class="other-facilities__minimap">
+                    <h2>Toms minimap tool</h2>
+                </div>
+            </a>
+            <a href="http://www.sharidan.dk/railroads-online/rowb/">
+                <div class="other-facilities__worldbackup">
+                    <h2>Shridans World Backup Tool</h2>
+                </div>
+            </a>
+            <a href="https://rail-road-not-found.vercel.app/">
+                <div class="other-facilities__3Dmap">
+                    <h2>Albundys 3D Map tool</h2>
+                </div>
+            </a>
+            <a href="https://wiki.minizwerg.online/">
+                <div class="other-facilities__wiki">
+                    <h2>Minizwerg's wiki</h2>
+                </div>
+            </a>
+        </div>
 
-    
-    <script src="./utils/data.js"></script>
-    <script src="./utils/modal.js"></script>
-    <script src="./utils/engine.js"></script>
-    <script src="./utils/cargo.js"></script>
-    <script src="./utils/result.js"></script>
-    <script src="./app.js"></script>
+        <div class="about_developers">
+            <h2 class="about_developers__heading">A Word From Developers</h2>
+            <div class="about_developers__param">
+                <h2>Param Patil</h2>
+                <p style="color: rgb(255, 255, 255); font-size: 1.3vw; height: 60%;">"Hi guys, i was inspired to make this resource for you guys by watching kan's videos. I am fond of watching the gameplay of this game. This opportunity gave me a chance to learn a lot about web development. I hope this website lives upto your expectations because neither of us have this game's liscense to expirence it. But you guys can share your reviews with me & i will try to keep the website bugs free and upto date. Happy playing!"
+                <strong style="display: block;text-align: right;" ><br> - Param Patil</strong></p>
+                <button class="custom-button" style="width: 100%; height: 10%; font-size: 2vw; margin-top: 20px;" onclick="window.location.href='https://parampatil.github.io/';">Website</button>
+            </div>
+            <div class="about_developers__amit">
+                <h2>Amit Morade</h2>
+                <p style="color: rgb(255, 255, 255); font-size: 1.3vw; height: 60%;">"The main reason behind this project was to make it easy for you guys to build a running engine. This project helped me learn a lot of new technologies and understand how to tackle bug fixing. We have tried to fix most of the bugs but still if anyone faces any issues then plz feel free to contact us"
+                    <strong style="display: block;text-align: right;" ><br> - Amit Morade</strong></p>
+                    <button class="custom-button" style="width: 100%; height: 10%; font-size: 2vw; margin-top: 20px;" onclick="window.location.href='https://parampatil.github.io/';">Github</button>
+            </div>
+        </div>
+
+        <div class="links">
+            <h2 class="links__heading">Usefull Links</h2>
+            <a href="https://store.steampowered.com/app/1696810/RAILROADS_Online/">
+                <div>
+                    <h2>Download your copy of game from steam.</h2>
+                </div>
+            </a>
+            <a href="https://discord.com/invite/vhNrShWYnr">
+                <div>
+                    <h2>Join the Discord Server!</h2>
+                </div>
+            </a>
+            <a href="https://github.com/parampatil/Railroads-Online">
+                <div>
+                    <h2>Visit Github Repository</h2>
+                </div>
+            </a>
+            <a href="#">
+                <div>
+                    <h2>Comming Soon!</h2>
+                </div>
+            </a>
+            <a href="#">
+                <div>
+                    <h2>Comming Soon!</h2>
+                </div>
+            </a>
+        </div>
+        <a id="back-to-top"></a>
+
+        <div class="footer">
+            <div class="footer-text" style="text-align: center;color: white; background-color: black;">
+                <p>&copy; Copyright 2022 - Param Patil & Amit Morade</p>
+            </div>
+        </div>
+
+        <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+        <script src="https://kit.fontawesome.com/9158aae58b.js" crossorigin="anonymous"></script>
+        <script src="./utils/script.js"></script>
+
 </body>
-</html>   
-
-
-    
+</html> 

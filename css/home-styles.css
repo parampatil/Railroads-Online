@@ -1,0 +1,333 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  transition: 0.2s ease;
+}
+
+a:hover {
+  color: #ffee00;
+}
+
+h2 {
+  padding: 5px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: overlay;
+  font-family: "Lato", sans-serif;
+  /* padding-right: 100px; */
+}
+
+@media screen and (max-width: 900px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: overlay;
+    overflow-x: hidden;
+    font-family: "Lato", sans-serif;
+  }
+}
+
+.viewport-container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.controls {
+  background: rgb(3, 31, 41);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 50;
+}
+
+.right__side__controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Intro {
+  position: relative;
+  /* height: fit-content; */
+  display: flex;
+  flex-direction: column;
+  vertical-align: top;
+}
+
+.intro-text {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 10%;
+  width: 100vw;
+  font-size: 1.5vw;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 3px;
+  text-align: center;
+  overflow: hidden;
+  padding: 5px;
+  z-index: 1;
+}
+
+.intro-video {
+  position: relative;
+  left: 0;
+  z-index: 0;
+}
+
+.facilities {
+  display: grid;
+  grid-template-columns: auto auto;
+  position: relative;
+  height: 100vh;
+  align-items: top;
+  background-color: white;
+  padding: 20px;
+  background-color: #85ffbd;
+  background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+}
+
+.facilities h2 {
+  color: rgb(3, 31, 41);
+  text-align: center;
+  align-items: center;
+  font-size: 2.5vw;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  grid-column: 1 / 3;
+}
+
+.facilities div {
+  align-items: center;
+  padding: 10px;
+  height: 80vh;
+  background-color: white;
+  margin: 30px;
+  box-shadow: black 5px 5px 10px;
+  height: 75vh;
+  width: 40vw;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(14, 174, 87, 1) 0%,
+    rgba(12, 116, 117, 1) 90%
+  );
+  cursor: pointer;
+}
+
+.facilities div:hover {
+  box-shadow: black 15px 15px 20px;
+  transform: scale(1.01);
+}
+
+.other-facilities {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: top;
+  background-color: white;
+  padding: 20px;
+  background-image: linear-gradient(
+    -45deg,
+    rgba(240, 30, 92, 1) 0%,
+    rgba(244, 49, 74, 1) 30.5%,
+    rgba(249, 75, 37, 1) 56.1%,
+    rgba(250, 88, 19, 1) 75.6%,
+    rgba(253, 102, 2, 1) 100.2%
+  );
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+}
+
+.other-facilities h2 {
+  color: rgb(3, 31, 41);
+  text-align: center;
+}
+
+.other-facilities div {
+  display: flex;
+  align-items: center;
+  height: 25vh;
+  width: 15vw;
+  padding: 10px;
+  margin: 20px;
+
+  box-shadow: black 5px 5px 10px;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  background-image: linear-gradient(120deg, #fdfbfb, #e4e4e4);
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+
+  cursor: pointer;
+}
+
+.other-facilities div:hover {
+  box-shadow: black 15px 15px 20px;
+  transform: scale(1.01);
+  background-color: rgb(255, 255, 255);
+  background-image: none;
+}
+
+.about_developers {
+  /* position: relative; */
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 30px;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+.about_developers h2 {
+  color: rgb(3, 31, 41);
+  text-align: center;
+  font-size: 2.5vw;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  grid-column: 1 / 3;
+}
+
+.about_developers > div {
+  align-items: center;
+  padding: 20px;
+  height: 80vh;
+  background-color: rgba(255, 255, 255, 0.397);
+  margin: 30px;
+  box-shadow: black 5px 5px 10px;
+  height: 70vh;
+  width: 40vw;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  transform: scale(1.01);
+}
+
+.about_developers > div:hover {
+  box-shadow: black 15px 15px 20px;
+}
+
+.about_developers p {
+  font-size: 1.5vw;
+  color: white;
+  letter-spacing: 3px;
+  text-align: left;
+  overflow: hidden;
+  margin: 20px 0px;
+  padding: 5px;
+  z-index: 1;
+}
+
+.links {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  padding: 30px;
+  /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+.links > h2 {
+  font-size: 2.5vw !important;
+  grid-column: 1 / 6;
+}
+
+.links h2 {
+  color: rgb(3, 31, 41);
+  text-align: center;
+  font-size: 1.5vw;
+  overflow: hidden;
+}
+
+.links div {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 25vh;
+  width: 15vw;
+  padding: 10px;
+  margin: 20px;
+
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  background-image: linear-gradient(120deg, #1eff00, #daf157);
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+  box-shadow: black 5px 5px 10px;
+}
+
+.links div:hover {
+  box-shadow: black 15px 15px 20px;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Back to Top */
+#back-to-top {
+  display: block;
+  background-color: #ff9900cc;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+#back-to-top::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1em;
+  line-height: 25px;
+  color: #fff;
+}
+#back-to-top:hover {
+  cursor: pointer;
+  background-color: #333;
+}
+#back-to-top:active {
+  background-color: #555;
+}
+#back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}

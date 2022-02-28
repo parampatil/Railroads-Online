@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RailRoad Online - Resources</title>
+
+        <link rel="icon" href="./images/railroad.png">
+
+        <link rel="stylesheet" href="./css/resource-styles.css">
+        <link rel="stylesheet" href="./css/buttons.css">
+        <link rel="stylesheet" href="./css/modal.css">
+
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+                integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+                crossorigin="anonymous" />
+        
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
+        <!-- <script  src="./script.js"></script> -->
+
+
+
+</head>
+
+<body>
+        <div class="viewport-container">
+                <div class="controls">
+                        <div>
+                                <h2><a href="https://github.com/parampatil/Railroads-Online">RailRoads Online!</a></h2>
+                        </div>
+
+                        <div class="page-heading">
+                                <h2>Resource Calculator</h2>
+                        </div>
+                        <div class="right__side__controls">
+
+                                <!-- Lock Button -->
+                                <div style="display: flex;align-items: center;justify-content: center; margin-top: 5px">
+                                        <span id="lock" class="lock unlocked" ></span>
+                                </div>
+
+                                <div class="info_icon" style="margin-right: -1vw">
+                                        <i class="fa fa-repeat" aria-hidden="true" onclick="reset_board()" data-title="Reset Board"></i>
+                                </div>
+
+                                <!-- Info Button -->
+                                <div class="info_icon">
+                                        <i class="fa fa-info-circle" aria-hidden="true" onclick="info_modal_open()" data-title="Info"></i>
+                                        <div class="i-modal i-open">
+                                            <div class="i-modal-overlay" onclick="info_modal_close()"></div>
+                                            <div class="i-modal-card">
+                                                <div class="i-modal-body">
+                                                    <div class="i-modal-header">How to use this Resource Calculator</div>
+                                                    <div class="i-modal-content">
+                                                        <strong>Instructions:</strong><br><br>
+                                                        <span style="color:brown;">1. &nbsp</span>  To calculate your deliveries, change ONLY the value in Second input which will turn white when you hover, Since they are the lowest value per ratio, they are our limiting factor.
+                                                        of any car<br><br>
+                                                        <span style="color: brown;">2. &nbsp</span> All of the tables will update automatically to the Correct Numbers. No of cars will tell you the proper number of cars needed to make a delivery to any industry.<br>                                 
+                                                        <br><br>
+                                                        <strong>Lock Button:</strong><br><br>
+                                                        Click the lock button to lock the input fields. This will set incriment limits to input such that it will partially help the user in getting full cars.<br>
+                                                        <span style="color: brown; font-style: italic;">Note: This is a beta feature and will be optimised in the future.</span><br>
+                                                    </div>      
+
+                                                    <div class="i-modal-footer">
+                                                        Enjoy!
+                                                        <button class="custom-button" onclick="info_modal_close()">Okay</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                <!-- Hamburger Menu -->
+                                <div id="menuToggle">
+                                        <input type="checkbox" />
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <ul id="menu">
+                                                <a href="index.html">
+                                                        <li>Home</li>
+                                                </a>
+                                                <a href="railroads_manager.html">
+                                                        <li>Railroads-Online Manager</li>
+                                                </a>
+                                                <a href="resource-calculator.html">
+                                                        <li>Resource Calculator</li>
+                                                </a>
+                                                <a href="https://github.com/parampatil/Railroads-Online"
+                                                        target="_blank">
+                                                        <li>Github Repository</li>
+                                                </a>
+                                        </ul>
+                                </div>
+                        </div>
+                </div>
+                <div class="views-container_rc">
+                        <div class="views_rc">
+                                <div class="column__one_rc">
+                                        <div class="ipop__view">
+
+                                                <div class="ipop__view-body">
+                                                        <div class="ipop_grid-container" id="ipop_grid">
+                                                                <!-- Grid columns = 9 -->
+                                                                <!-- Headings -->
+                                                                <div class="item1-heading_locations">Locations</div>
+                                                                <div class="item2-heading_inputs">Input</div>
+                                                                <div class="item5-heading_outputs">Output</div>
+                                                                <div class="item7-heading_noofcars">No of Cars</div>
+
+                                                                <!-- Logging Camp -->
+                                                                <div class="item1-heading logging-camp">Logging Camp
+                                                                </div>
+                                                                <div class="item2-input logging-camp">None</div>
+                                                                <div class="item3-input logging-camp">None</div>
+                                                                <div class="item4-input logging-camp">None</div>
+                                                                <div class="item5-output logging-camp">Log<br><input
+                                                                                type="number" disabled="true"
+                                                                                 id="loggingcamp-op1"></input></div>
+                                                                <div class="item6-output logging-camp">Cord
+                                                                        Wood<br><input type="number" disabled="true"
+                                                                                id="loggingcamp-op2"></input></div>
+                                                                <div class="item7-noofcars logging-camp"
+                                                                        style="visibility:hidden"></div>
+                                                                <div class="item8-noofcars logging-camp"
+                                                                        style="visibility:hidden"></div>
+                                                                <div class="item9-noofcars logging-camp"
+                                                                        style="visibility:hidden"></div>
+
+                                                                <!-- Sawmill -->
+                                                                <div class="item1-heading sawmill">Sawmill</div>
+                                                                <div class="item2-input sawmill"
+                                                                        style="visibility:hidden"></div>
+                                                                <div class="item3-input sawmill">
+                                                                        Logs<br><input type="number"  step="1" id="sawmill-ip2"></input>
+                                                                </div>
+                                                                <div class="item4-input sawmill"
+                                                                        style="visibility:hidden"></div>
+                                                                <div class="item5-output sawmill">
+                                                                        Lumber<br><input type="number" disabled="true"
+                                                                                id="sawmill-op1"></input></div>
+                                                                <div class="item6-output sawmill">Wood
+                                                                        Beams<br><input type="number" disabled="true"
+                                                                                id="sawmill-op2"></input></div>
+                                                                <div class="item7-noofcars sawmill">
+                                                                        Logs - Log
+                                                                        Car<br><input type="number" disabled="true"
+                                                                                id="sawmill-cars1"></input></div>
+                                                                <div class="item8-noofcars sawmill"
+                                                                        style="visibility:hidden"></div>
+                                                                <div class="item9-noofcars sawmill"
+                                                                        style="visibility:hidden"></div>
+
+                                                                <!-- Iron Mine -->
+                                                                <div class="item1-heading iron-mine">Iron Mine</div>
+                                                                <div class="item2-input iron-mine">Lumber<br><input
+                                                                                type="number" disabled="true"
+                                                                                id="ironmine-ip1"></input></div>
+                                                                <div class="item3-input iron-mine">Beams<br><input
+                                                                                type="number"  step="1" id="ironmine-ip2"></input>
+                                                                </div>
+                                                                <div class="item4-input iron-mine"
+                                                                        style="visibility:hidden"></div>
+                                                                <div class="item5-output iron-mine">Iron<br><input
+                                                                                type="number" disabled="true"
+                                                                                id="ironmine-op1"></input></div>
+                                                                <div class="item6-output iron-mine"
+                                                                        style="visibility:hidden"></div>
+                                                                <div class="item7-noofcars iron-mine">Lumber -
+                                                                        Stakes<br><input type="number" disabled="true"
+                                                                                id="ironmine-cars1"></input></div>
+                                                                <div class="item8-noofcars iron-mine">Wood Beam -
+                                                                        Stakes<br><input type="number" disabled="true"
+                                                                                id="ironmine-cars2"></div>
+                                                                <div class="item9-noofcars iron-mine"
+                                                                        style="visibility:hidden"></div>
+
+                                                                <!-- Smelter -->
+                                                                <div class="item1-heading smelter">Smelter</div>
+                                                                <div class="item2-input smelter">Cord Wood<br><input
+                                                                                type="number" disabled="true"
+                                                                                id="smelter-ip1"></input></div>
+                                                                <div class="item3-input smelter">Iron<br><input
+                                                                                type="number" 
+                                                                                step="1" id="smelter-ip2"></input></div>
+                                                                <div class="item4-input smelter"
+                                                                        style="visibility:hidden"></div>
+                                                                <div class="item5-output smelter">Rails<br><input
+                                                                                type="number" disabled="true"
+                                                                                id="smelter-op1"></input></div>
+                                                                <div class="item6-output smelter">Iron Slab<br><input
+                                                                                type="number" disabled="true"
+                                                                                id="smelter-op2"></input></div>
+                                                                <div class="item7-noofcars smelter">CordWood -
+                                                                        Bulkhead<br><input type="number" disabled="true"
+                                                                                id="smelter-cars1"></input></div>
+                                                                <div class="item8-noofcars smelter">Iron Ore -
+                                                                        Hopper<br><input type="number" disabled="true"
+                                                                                id="smelter-cars2"></div>
+                                                                <div class="item9-noofcars smelter"
+                                                                        style="visibility:hidden"></div>
+
+                                                                <!-- Coal Mine -->
+                                                                <div class="item1-heading coal-mine">Coal Mine</div>
+                                                                <div class="item2-input coal-mine">Wood Beam<br><input
+                                                                                type="number" disabled="true"
+                                                                                 id="coalmine-ip1"></input></div>
+                                                                <div class="item3-input coal-mine">Rails<br><input
+                                                                                type="number"  step="1" id="coalmine-ip2"></input>
+                                                                </div>
+                                                                <div class="item4-input coal-mine"
+                                                                        style="visibility:hidden"></div>
+                                                                <div class="item5-output coal-mine">Coal<br><input
+                                                                                type="number" disabled="true"
+                                                                                id="coalmine-op1"></input></div>
+                                                                <div class="item6-output coal-mine"
+                                                                        style="visibility:hidden"></div>
+                                                                <div class="item7-noofcars coal-mine">Wood Beam -
+                                                                        Stakes<br><input type="number" disabled="true"
+                                                                                id="coalmine-cars1"></input></div>
+                                                                <div class="item8-noofcars coal-mine">Rails -
+                                                                        Stakes<br><input type="number" disabled="true"
+                                                                                id="coalmine-cars2"></div>
+                                                                <div class="item9-noofcars coal-mine"
+                                                                        style="visibility:hidden" ></div>
+
+                                                                <!-- Iron Works -->
+                                                                <div class="item1-heading iron-works">Iron Works</div>
+                                                                <div class="item2-input iron-works">Lumber<br><input
+                                                                                type="number" disabled="true"
+                                                                                id="ironworks-ip1"></input></div>
+                                                                <div class="item3-input iron-works">Coal<br><input
+                                                                                type="number"  step="1" id="ironworks-ip2"></input>
+                                                                </div>
+                                                                <div class="item4-input iron-works">Iron Slab<br><input
+                                                                                type="number" disabled="true"
+                                                                                id="ironworks-ip3"></input></div>
+                                                                <div class="item5-output iron-works">Steel
+                                                                        Pipes<br><input type="number" disabled="true"
+                                                                                id="ironworks-op1"></input></div>
+                                                                <div class="item6-output iron-works">Tool
+                                                                        Crates<br><input type="number" disabled="true"
+                                                                                id="ironworks-op2"></input></div>
+                                                                <div class="item7-noofcars iron-works">Lumber -
+                                                                        Stakes<br><input type="number" disabled="true"
+                                                                                id="ironworks-cars1"></input></div>
+                                                                <div class="item8-noofcars iron-works">Coal Ore -
+                                                                        Hopper<br><input type="number" disabled="true"
+                                                                                id="ironworks-cars2"></div>
+                                                                <div class="item9-noofcars iron-works">Iron Slab -
+                                                                        Stakes<br><input type="number" disabled="true"
+                                                                                id="ironworks-cars3"></div>
+
+                                                                <!-- Oil Field -->
+                                                                <div class="item1-heading oil-field">Oil Field</div>
+                                                                <div class="item2-input oil-field">Steel Pipes<br><input
+                                                                                type="number" disabled="true"
+                                                                                id="oilfield-ip1"></input></div>
+                                                                <div class="item3-input oil-field">Tool Crates<br><input
+                                                                                type="number"  step="1" id="oilfield-ip2"></input></div>
+                                                                <div class="item4-input oil-field">Wood Beams<br><input
+                                                                                type="number" disabled="true"
+                                                                                id="oilfield-ip3"></input></div>
+                                                                <div class="item5-output oil-field">Crude Oil<br><input
+                                                                                type="number" disabled="true"
+                                                                                id="oilfield-op1"></input></div>
+                                                                <div class="item6-output oil-field"
+                                                                        style="visibility:hidden"></div>
+                                                                <div class="item7-noofcars oil-field">Steel Pipes - Log
+                                                                        Car<br><input type="number" disabled="true"
+                                                                                id="oilfield-cars1"></input></div>
+                                                                <div class="item8-noofcars oil-field">Tool Crates -
+                                                                        Boxcar<br><input type="number" disabled="true"
+                                                                                id="oilfield-cars2"></div>
+                                                                <div class="item9-noofcars oil-field">Wood Beams -
+                                                                        Stakes<br><input type="number" disabled="true"
+                                                                                id="oilfield-cars3"></div>
+
+                                                                <!-- Refinery -->
+                                                                <div class="item1-heading refinery">Refinery</div>
+                                                                <div class="item2-input refinery">Lumber<br><input
+                                                                                type="number" disabled="true"
+                                                                                id="refinery-ip1"></input></div>
+                                                                <div class="item3-input refinery">Steel Pipes<br><input
+                                                                                type="number" value="" step="1" id="refinery-ip2"></input>
+                                                                </div>
+                                                                <div class="item4-input refinery">Crude Oil<br><input
+                                                                                type="number" disabled="true"
+                                                                                id="refinery-ip3"></input></div>
+                                                                <div class="item5-outpu refinery">Oil Barrels<br><input
+                                                                                type="number" disabled="true"
+                                                                                id="refinery-op1"></input></div>
+                                                                <div class="item6-output refinery" style="visibility:hidden"></div>
+                                                                <div class="item7-noofcars refinery">Lumber -
+                                                                        Stakes<br><input type="number" disabled="true"
+                                                                                id="refinery-cars1"></input></div>
+                                                                <div class="item8-noofcars refinery">Steel Pipes - Log
+                                                                        Car<br><input type="number" disabled="true"
+                                                                                id="refinery-cars2"></div>
+                                                                <div class="item9-noofcars refinery">Crude Oil -
+                                                                        Tanker<br><input type="number" disabled="true"
+                                                                                id="refinery-cars3"></div>
+                                                        </div>
+                                                        <div id="engine__list">
+                                                        </div>
+                                                </div>
+
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+        <!-- Javascript -->
+        <script src="./utils/modal.js"></script>
+
+
+        <script src="./utils/resource_calculator.js"></script>
+</body>
+
+</html>

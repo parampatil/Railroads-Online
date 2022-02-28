@@ -2,7 +2,6 @@ const $engine = document.querySelector('#engine')
 const $tractiveEffort = document.querySelector('#tractive-effort')
 const $engines = document.querySelector('#engine__list')
 const $addEngine = document.querySelector('#add__engine')
-const $deleteAllEngines = document.querySelector('#delete_all_engine')
 const $engine_delete = document.querySelector('#enngine_delete')
 let count = 0
 let engines__totalwt= 0
@@ -32,7 +31,7 @@ const addEngine = () =>{
     //tractive effort 
     //create input to display value
     const input2 = document.createElement('input')
-    input2.value = 0
+    // input2.value = 0
     input2.setAttribute('disabled', 'disabled')
 
     // input2.classList.add('display__engine')
@@ -41,7 +40,7 @@ const addEngine = () =>{
     //Engine Weight
     //create input to display value
     const input3 = document.createElement('input')
-    input3.value = 0
+    // input3.value = 0
     input3.setAttribute('disabled', 'disabled')
 
     // input3.classList.add('display__engine')
@@ -50,7 +49,7 @@ const addEngine = () =>{
     //Tender Weight
     //create input to display value
     const input4 = document.createElement('input')
-    input4.value = '0'
+    // input4.value = '0'
     input4.setAttribute('disabled', 'disabled')
     // input4.style.visibility = 'hidden'
 
@@ -102,7 +101,7 @@ const onEngineSelect = (e) => {
             parentElement.childNodes[3].value = (engine.tenderWeight / 2000).toFixed(2)
         }
         else{
-            parentElement.childNodes[3].value = '0'
+            parentElement.childNodes[3].value = ''
         }
     }
     else{
@@ -112,38 +111,16 @@ const onEngineSelect = (e) => {
             parentElement.childNodes[3].value = engine.tenderWeight
         }
         else{
-            parentElement.childNodes[3].value = '0'
+            parentElement.childNodes[3].value = ''
         }
     }
     update_values()
 }
 
-
-const yesOptionEngine = () => {
-    $modal.style.display = "none"
-    console.log($engines.childNodes.length)
-    $engines.innerHTML = ""
-    update_result()
-}
-
-const noOptionEngine = () => {
-    $modal.style.display = "none"
-}
-
-//Delete Engines
-const deleteAllEngines = (e) => {
-    if($engines.childNodes.length<=0){
-        return showModalWindow('Sorry! No engines in the list', 'alert')
-    }
-    showModalWindow('Do you want to delete all Engines')
-
-    document.querySelector('#yesChoice').addEventListener('click', yesOptionEngine)
-    document.querySelector('#noChoice').addEventListener('click', noOptionEngine)  
-}
-
+//Delete Engine
 const delete_engine_function = (e) => {
-    console.log(e.target.parentElement)
     to_delete = e.target.parentElement
     to_delete.remove()
     update_result()
 }
+

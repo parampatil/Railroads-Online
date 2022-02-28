@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RailRoad Online - Manager</title>
+ 
+    <link rel="icon" href="./images/railroad.png">
+    <link rel="stylesheet" href="./css/manager-styles.css">
+    <link rel="stylesheet" href="./css/buttons.css">
+    <link rel="stylesheet" href="./css/modal.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+</head>
+
+<body onload="onLoad_fun()">
+
+    <!-- welcome message modal-->
+    <div class="w-modal w-open">
+        <div class="w-modal-overlay" onclick="welcome_modal_close()"></div>
+        <div class="w-modal-card">
+            <div class="w-modal-body">
+                <div class="w-modal-header">Hey, Welcome to RailRoads Online! Manager</div>
+                <div class="w-modal-content">
+                    <!-- <i class="fa fa-circle"></i> &nbsp&nbsp&nbsp -->
+                    All the weights are currently in
+                    <strong>pounds</strong>
+                    ,you can change them later by
+                    clicking on the toggle on top
+                </div>
+                <div class="w-modal-footer">
+                    <div>Developers: <a href="https://github.com/Amit-Morade">&nbsp Amit &nbsp</a></a> & <a
+                            href="https://parampatil.github.io/">&nbsp Param</a></div>
+                    <button class="custom-button" onclick="welcome_modal_close()">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clear workspace modal -->
+    <div class="cw-modal w-open">
+        <div class="cw-modal-overlay" onclick="cw_modal_close()"></div>
+        <div class="cw-modal-card">
+            <div class="cw-modal-body">
+                <div class="cw-modal-header">
+                    <!-- Dynamic Content -->
+                </div>
+                <div class="cw-modal-content">
+                    <!-- Dynamic Content -->
+                </div>
+                <div class="cw-modal-footer">
+                        <button id="yesChoice" class="yesChoice custom-button" onclick="cw_optionSelector()">Yes</button>
+                        <button id="noChoice" class="noChoice custom-button" onclick="cw_modal_close()">NO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Modal -->
+    <div class="alert-modal alert-open">
+        <div class="alert-modal-overlay" onclick="alert_modal_close()"></div>
+        <div class="alert-modal-card">
+            <div class="alert-modal-body">
+                <div class="alert-modal-header">ALERT</div>
+                <div class="alert-modal-content">
+                    <!-- Dynamic text -->
+                </div>
+                <div class="alert-modal-footer">
+                    <button class="custom-button" onclick="alert_modal_close()">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="viewport-container">
+        <div class="controls">
+            <div>
+                <h2><a href="https://github.com/parampatil/Railroads-Online">RailRoads Online!</a></h2>
+            </div>
+            <div id="current_unit">
+                <img id="pounds" src="./images/pounds.png" alt="Current Weight Unit">
+                <img id="kg" src="./images/kg.png" alt="Current Weight Unit">
+            </div>
+
+
+            <!--Difficulty Dropdown-->
+
+            <div class="right__side__controls">
+
+                <div class="toggle-button-cover">
+                    <div class="button-cover">
+                        <div class="button r" id="button-4">
+                            <input type="checkbox" class="checkbox" id="lbs_ton" />
+                            <div class="knobs"></div>
+                            <div class="layer"></div>
+                        </div>
+                    </div>
+                </div>
+                <label for="difficulty">Difficulty : </label>
+                <select class="select-custom" style="width: 70px;" id="difficulty" name="difficulty">
+                    <option value="0">Casual</option>
+                    <option value="0.25">Easy</option>
+                    <option value="0.5" selected>Medium</option>
+                    <option value="075">Hard</option>
+                    <option value="1">Realistic</option>
+                </select>
+                <label for="grade">Grade : </label>
+                <select class="select-custom" style="width: 30px;" id="grade" name="grade">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+
+                <!-- Clear Workspace Button -->
+                <button id="clearWorkspace" class="clear__workspace" data-toggle="tooltip"
+                    title="This will clear all workspace" type="button" onclick="cw_modal_open('Clear Workspace', 'Are you sure you want to delete all engines & cargo?', 'all')">Clear Workspace</button>
+                
+
+                <div class="info_icon">
+                    <i class="fa fa-info-circle" aria-hidden="true" onclick="info_modal_open()"></i>
+                    <div class="i-modal i-open">
+                        <div class="i-modal-overlay" onclick="info_modal_close()"></div>
+                        <div class="i-modal-card">
+                            <div class="i-modal-body">
+                                <div class="i-modal-header">How to use this Manager</div>
+                                <div class="i-modal-content">
+                                    <div>
+                                        <strong>Physics Settings:</strong><br>
+                                        <span style="color:brown;">-CASUAL:</span> freight has no effect on the total
+                                        weight
+                                        of any car<br>
+                                        <span style="color: brown;">-EASY:</span> freight will have 25% of it's
+                                        realistic
+                                        value<br>
+                                        <span style="color: brown;">-MEDIUM (Default):</span> freight will have 50% of
+                                        it's
+                                        realistic value<br>
+                                        <span style="color: brown;">-HARD:</span> freight will have 75% of it's
+                                        realistic
+                                        value<br>
+                                        <span style="color: brown;">-REALISTIC:</span> freight has it's realistic
+                                        value<br>
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <strong>Building your train:</strong><br>
+                                        1) Use pulldown menu to select your game's Physics Setting (Default: Medium)
+                                        <br>
+                                        2) Enter a grade value in Grade field.
+                                        <br>
+                                        3) Click on Add Engine & use the pulldown menu to select your engine(s).
+                                        <br>
+                                        4) Click on Add Cargo & Use pulldown menu select the Cargo to be hauled. Car type will automatically
+                                        be entered into the car field.
+                                        <br>
+                                        5) Enter the number of cargo items on each car (Cargo Qty). Cannot exceed the
+                                        Max Cargo number (autofilled based on cargo type)
+                                        <br>
+                                        6) Enter the number of cars carrying the chosen Cargo in No. Cars field.
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <strong>Evaluation:</strong><br>
+                                        If Max Pullable Load is <strong style="color: green;">Green</strong> you should be good to go.<br>
+                                        <em style="color: rgb(44, 44, 44);"><strong>Note:</strong>Use Excess Pullable and Power Usage to determine how much weight you need to
+                                        shed or can add before your train is overweight and the engines unable to pull
+                                        your train. Recommend keeping power usage to under 80% for best operations. (above 80% colour will change to <strong style="color: orange;">ORANGE</strong>)</em>
+                                        <br><br>
+                                        If Max Pullable Load is <strong style="color: red;">RED</strong> it is unlikely your train will make it to your
+                                        destination. Consider the following options:
+                                        <br>
+                                        1) Reduce your train's weight by reducing the number of cars being pulled or the
+                                        amount of cargo on each car.
+                                        <br>
+                                        2) Change or add engines. (If adding engines, use the same engine model and all
+                                        at the front of the train. Using different engines and/or placing at the back
+                                        may invalidate these calculations.)
+                                        <br>
+                                        3) Redo your track route to reduce the average and maximum grade
+                                    </div>
+                                </div>
+                                <div class="i-modal-footer">
+                                    Enjoy!
+                                    <button class="custom-button" onclick="info_modal_close()">Okay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="menuToggle" style="top: 2px !important">
+                    <input type="checkbox" />
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <ul id="menu">
+                        <a href="index.html">
+                            <li>Home</li>
+                        </a>
+                        <a href="railroads_manager.html">
+                            <li>Railroads-Online Manager</li>
+                        </a>
+                        <a href="resource-calculator.html">
+                            <li>Resource Calculator</li>
+                        <a href="https://github.com/parampatil/Railroads-Online" target="_blank">
+                            <li>Github Repository</li>
+                        </a>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="views-container">
+
+            <div class="views">
+                <!--Column1-->
+                <div class="column__one">
+                    <div class="engine__view">
+                        <div class="engine__view-heading">
+                            <h2>Select Engine</h2>
+                            <button class="custom-button" id="add__engine">Add Engine</button>
+                        </div>
+
+                        <div class="engine__view-body">
+                            <div class="Container">
+                                <h1 class="engine">Engine</h1>
+                                <h1 class="teffort">Tractive Effort</h1>
+                                <h1 class="eweight">Engine Weight</h1>
+                                <h1 class="tweight">Tender Weight</h1>
+                                <h1 class="engine_del"><i id="delete_all_engine" class="fas fa-trash"
+                                        style="user-select: auto;" onclick="cw_modal_open('Delete all ENGINES','Are you sure you want to delete all engines?','engines')"></i></h1>
+                            </div>
+                            <div id="engine__list">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="result__view">
+                        <div class="result__view-heading">
+                            <h2>Result</h2>
+                        </div>
+                        <div class="result__view-body">
+                            <div class="Container">
+                                <h1 class="train-weight">Train Weight</h1>
+                                <h1 class="max-pull">Your Engine can Pull</h1>
+                                <h1 class="net-pull" id="result_heading_last">How much more you can pull / need to pull
+                                </h1>
+                                <h1 class="percent-pull">Power Usage<br>(ideal: 80%)</h1>
+                            </div>
+                            <div class="Container" id="result__list">
+                                <input disabled class="train-weight" id="result__train-weight">
+                                <input disabled class="max-pull" id="result__max-pull">
+                                <input disabled class="net-pull" id="result__net-pull">
+                                <input disabled class="percent-pull" id="result__percent-pull">
+                            </div>
+                            <div class="result_msg-div">
+                                <div style="margin-bottom: 10px; display: flex; flex-direction: column; width: 80%;">
+                                    <div class="progress" id="progress-div">
+                                        <label>Load</label><div class="progress-bar" id="progress-bar-trainweight"></div>
+                                        <label>Pulling Power</label><div class="progress-bar" id="progress-bar-maxpull"></div>       
+                                    </div>
+                                </div>
+                                <input type="text" class="result_msg" id="result_msg">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="column__two">
+                    <div class="cargo__view">
+                        <div class="cargo__view-heading">
+                            <h2>Cargo</h2>
+                            <button class="custom-button" id="add__cargo">Add Cargo</button>
+                        </div>
+
+                        <div class="cargo__view-body">
+                            <div class="cargo__list-heading">
+                                <div class="Container">
+                                    <h1 class="cargoType">Cargo</h1>
+                                    <h1 class="carType">Car Type</h1>
+                                    <h1 class="QTY">Cargo QTY</h1>
+                                    <h1 class="Noofcars">No. of Cars</h1>
+                                    <h1 class="Loaded">Loaded wt.</h1>
+                                    <h1 class="cargo_del"><i id="delete_all_cargo" class="fas fa-trash"
+                                            style="user-select: auto;" onclick="cw_modal_open('Delete all CARGO','Are you sure you want to delete all cargo?','cargo')"></i></h1>
+                                </div>
+                            </div>
+                            <div id="cargo__list">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="footer-div">
+        Created by : <a href="https://github.com/Amit-Morade">&nbsp Amit &nbsp</a></a> & <a href="https://parampatil.github.io/">&nbsp Param</a>
+    </div> -->
+
+
+        <script src="./utils/data.js"></script>
+        <script src="./utils/engine.js"></script>
+        <script src="./utils/cargo.js"></script>
+        <script src="./utils/result.js"></script>
+        <script src="./utils/app.js"></script>
+        <!-- <script>
+        function cb(response) {
+            document.getElementById('visits').innerHTML = ` ${response.value} `;
+        }
+    </script>
+    <script async src="https://api.countapi.xyz/hit/amitparam/visits?callback=cb"></script> -->
+</body>
+
+</html>
