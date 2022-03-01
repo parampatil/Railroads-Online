@@ -34,12 +34,10 @@ $cargoList.addEventListener('change', onCargoSelect)
 $difficulty.addEventListener('change', () => {
     let collection_cargodiv = document.getElementsByClassName('Loaded');
     for (let i = 1; i < collection_cargodiv.length; i++) {
-        // console.log(collection_cargodiv[i].parentElement.childNodes)
         onCargoSelect(collection_cargodiv[i])
         update_values()
     }
 })
-$grade.addEventListener('change', update_values)
 
 //eventlisteners - lbs_ton toggle
 $weight_toggle.addEventListener('change', () => {
@@ -196,3 +194,50 @@ const alert_modal_open = (msg) => {
     document.querySelector(".alert-modal").classList.add("open");
     document.querySelector(".alert-modal-content").innerHTML = msg;
 }
+
+
+//Custom select Grade
+$(".custom-select").each(function() {
+    var classes = $(this).attr("class"),
+        id      = $(this).attr("id"),
+        name    = $(this).attr("name");
+    var template =  '<div class="' + classes + '">';
+        template += '<span class="custom-select-trigger" id="sel_' + id + '" name="sel_' + name + '">';
+        $(this).find("option").each(function() {
+            if ($(this).attr("selected") === "selected") {
+                template += $(this).html();
+            }
+        });
+        template += '</span>';
+        template += '<div class="custom-options">';
+        $(this).find("option").each(function() {
+          template += '<span class="custom-option ' + $(this).attr("class") + '" data-value="' + $(this).attr("value") + '">' + $(this).html() + '</span>';
+        });
+        
+    template += '</div></div>';
+    
+    $(this).wrap('<div class="custom-select-wrapper"></div>');
+    $(this).hide();
+    $(this).after(template);
+  });
+  $(".custom-option:first-of-type").hover(function() {
+    $(this).parents(".custom-options").addClass("option-hover");
+  }, function() {
+    $(this).parents(".custom-options").removeClass("option-hover");
+  });
+  $(".custom-select-trigger").on("click", function() {
+    $('html').one('click',function() {
+      $(".custom-select").removeClass("opened");
+    });
+    $(this).parents(".custom-select").toggleClass("opened");
+    event.stopPropagation();
+  });
+
+  $(".custom-option").on("click", function() {
+    $(this).parents(".custom-select-wrapper").find("select").val($(this).data("value"));
+    $(this).parents(".custom-options").find(".custom-option").removeClass("selection");
+    $(this).addClass("selection");
+    $(this).parents(".custom-select").removeClass("opened");
+    $(this).parents(".custom-select").find(".custom-select-trigger").text($(this).text());
+    update_values()
+  });

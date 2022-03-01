@@ -109,7 +109,8 @@ body {
 }
 
 .controls label {
-  margin-right: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
   color: red;
   font-size: large;
   padding: 5px;

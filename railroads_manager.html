@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <label for="difficulty">Difficulty : </label>
-                <select class="select-custom" style="width: 70px;" id="difficulty" name="difficulty">
+                <select class="custom-select sources" name="difficulty" id="difficulty">
                     <option value="0">Casual</option>
                     <option value="0.25">Easy</option>
                     <option value="0.5" selected>Medium</option>
@@ -114,17 +114,47 @@
                     <option value="1">Realistic</option>
                 </select>
                 <label for="grade">Grade : </label>
-                <select class="select-custom" style="width: 30px;" id="grade" name="grade">
-                    <option value="0">0</option>
+                    <select class="custom-select sources" name="grade" id="grade">
+                    <option value="0" selected>0</option>
+                    <option value="0.25">0.25</option>
+                    <option value="0.5">0.5</option>
+                    <option value="0.75">0.75</option>
                     <option value="1">1</option>
+                    <option value="1.25">1.25</option>
+                    <option value="1.5">1.5</option>
+                    <option value="1.75">1.75</option>
                     <option value="2">2</option>
+                    <option value="2.25">2.25</option>
+                    <option value="2.5">2.5</option>
+                    <option value="2.75">2.75</option>
                     <option value="3">3</option>
+                    <option value="3.25">3.25</option>
+                    <option value="3.5">3.5</option>
+                    <option value="3.75">3.75</option>
                     <option value="4">4</option>
+                    <option value="4.25">4.25</option>
+                    <option value="4.5">4.5</option>
+                    <option value="4.75">4.75</option>
                     <option value="5">5</option>
+                    <option value="5.25">5.25</option>
+                    <option value="5.5">5.5</option>
+                    <option value="5.75">5.75</option>
                     <option value="6">6</option>
+                    <option value="6.25">6.25</option>
+                    <option value="6.5">6.5</option>
+                    <option value="6.75">6.75</option>
                     <option value="7">7</option>
+                    <option value="7.25">7.25</option>
+                    <option value="7.5">7.5</option>
+                    <option value="7.75">7.75</option>
                     <option value="8">8</option>
+                    <option value="8.25">8.25</option>
+                    <option value="8.5">8.5</option>
+                    <option value="8.75">8.75</option>
                     <option value="9">9</option>
+                    <option value="9.25">9.25</option>
+                    <option value="9.5">9.5</option>
+                    <option value="9.75">9.75</option>
                     <option value="10">10</option>
                 </select>
 
@@ -323,7 +353,10 @@
         <script src="./utils/engine.js"></script>
         <script src="./utils/cargo.js"></script>
         <script src="./utils/result.js"></script>
+        <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+
         <script src="./utils/app.js"></script>
+
         <!-- <script>
         function cb(response) {
             document.getElementById('visits').innerHTML = ` ${response.value} `;
