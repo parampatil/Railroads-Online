@@ -121,6 +121,6 @@ const onEngineSelect = (e) => {
 const delete_engine_function = (e) => {
     to_delete = e.target.parentElement
     to_delete.remove()
-    update_result()
+    update_values()
 }
 

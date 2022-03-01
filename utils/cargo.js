@@ -213,5 +213,5 @@ const onCargoSelect = (e) => {
 const delete_cargo_function = (e) => {
     to_delete = e.target.parentElement
     to_delete.remove()
-    update_result()
+    update_values()
 }

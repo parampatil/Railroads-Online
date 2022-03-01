@@ -31,13 +31,13 @@ $addCargo.addEventListener('click', addCargo)
 $cargoList.addEventListener('change', onCargoSelect)
 
 //eventlisteners - difficulty & grade
-$difficulty.addEventListener('change', () => {
-    let collection_cargodiv = document.getElementsByClassName('Loaded');
-    for (let i = 1; i < collection_cargodiv.length; i++) {
-        onCargoSelect(collection_cargodiv[i])
-        update_values()
-    }
-})
+// $difficulty.addEventListener('change', () => {
+//     let collection_cargodiv = document.getElementsByClassName('Loaded');
+//     for (let i = 1; i < collection_cargodiv.length; i++) {
+//         onCargoSelect(collection_cargodiv[i])
+//         update_values()
+//     }
+// })
 
 //eventlisteners - lbs_ton toggle
 $weight_toggle.addEventListener('change', () => {
@@ -239,5 +239,9 @@ $(".custom-select").each(function() {
     $(this).addClass("selection");
     $(this).parents(".custom-select").removeClass("opened");
     $(this).parents(".custom-select").find(".custom-select-trigger").text($(this).text());
+    let collection_cargodiv = document.getElementsByClassName('Loaded');
+    for (let i = 1; i < collection_cargodiv.length; i++) {
+        onCargoSelect(collection_cargodiv[i])
+    }
     update_values()
   });

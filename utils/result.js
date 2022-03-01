@@ -38,6 +38,7 @@ const update_values = () => {
 }
 
 const update_result = () => {
+    console.log($difficulty.value)
     if ($engines.innerHTML == "" && $cargoList.innerHTML == "") {
         count = 0
         countCargo = 0
