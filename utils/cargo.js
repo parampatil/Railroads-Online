@@ -174,7 +174,7 @@ const onCargoSelect = (e) => {
         if (targetElement.classList.value == 'cargoType') {
             if (targetElement.parentElement.childNodes[0].value !== 'Select Cargo') {
                 //set cartype
-                targetElement.parentElement.childNodes[1].value = cargo.cargoType
+                targetElement.parentElement.childNodes[1].value = carwt.frightCar
 
                 //set default no of cars
                 targetElement.parentElement.childNodes[3].disabled = false;

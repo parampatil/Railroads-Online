@@ -38,7 +38,6 @@ const update_values = () => {
 }
 
 const update_result = () => {
-    console.log($difficulty.value)
     if ($engines.innerHTML == "" && $cargoList.innerHTML == "") {
         count = 0
         countCargo = 0
@@ -58,13 +57,22 @@ const update_result = () => {
         net_effort = max_pull - total_train_weight.toFixed(0)
 
         //updating values to the screen
-        $resultList.childNodes[1].value = total_train_weight.toFixed(0)
-        $resultList.childNodes[3].value = max_pull.toFixed(0)
+        if (current_weightUnit == "ton") {
+            $resultList.childNodes[1].value = total_train_weight.toFixed(2)
+            $resultList.childNodes[3].value = max_pull.toFixed(2)
+        } else {
+            $resultList.childNodes[1].value = total_train_weight.toFixed(0)
+            $resultList.childNodes[3].value = max_pull.toFixed(0)
+        }
         if (net_effort > 0) {
             $resultList.childNodes[5].style.color = "rgb(75, 236, 75)"
-            $resultList.childNodes[5].value = net_effort.toFixed(0)
+            if (current_weightUnit == "ton") {
+                $resultList.childNodes[5].value = net_effort.toFixed(2)
+            }else{
+                $resultList.childNodes[5].value = net_effort.toFixed(0)
+            }
             $resultList.childNodes[7].style.color = "rgb(75, 236, 75)"
-            $resultList.childNodes[7].value = (total_train_weight / max_pull * 100).toFixed(0) + "%"
+            $resultList.childNodes[7].value = (total_train_weight / max_pull * 100).toFixed(1) + "%"
             $result_msg.style.visibility = "visible"
             $result_msg.value = "Your train can pull! Have safe journey!"
             $result_msg.style.color = "rgb(75, 236, 75)"
@@ -82,13 +90,21 @@ const update_result = () => {
 
         } else if (net_effort < 0) {
             $resultList.childNodes[5].style.color = "red"
-            $resultList.childNodes[5].value = net_effort.toFixed(0)
+            if (current_weightUnit == "ton") {
+                $resultList.childNodes[5].value = net_effort.toFixed(2)
+            }else{
+                $resultList.childNodes[5].value = net_effort.toFixed(0)
+            }
             $resultList.childNodes[7].style.color = "red"
             if (max_pull <= 0) {
                 $resultList.childNodes[7].value = ""
             }
             else {
-                $resultList.childNodes[7].value = (total_train_weight / max_pull * 100).toFixed(0) + "%"
+                if(current_weightUnit == "ton"){
+                    $resultList.childNodes[7].value = (total_train_weight / max_pull * 100).toFixed(2) + "%"
+                } else{
+                    $resultList.childNodes[7].value = (total_train_weight / max_pull * 100).toFixed(0) + "%"
+                }
             }
             $result_msg.style.visibility = "visible"
             $result_msg.value = "Your train can't pull! Please add more engines"
@@ -117,21 +133,21 @@ const total_trainwt = () => {
     //Total train Weight = All engine weight + tender weight + cargo loaded weight
 
     //variables for total train weight
-    let total_engineWeight = 0;
-    let total_tenderWeight = 0;
+    // let total_engineWeight = 0;
+    // let total_tenderWeight = 0;
     let total_cargoWeight = 0;
 
-    //getting values of engine weight
-    let collection_eweight = document.getElementsByClassName("eweight");
-    for (let i = 1; i < collection_eweight.length; i++) {
-        total_engineWeight = total_engineWeight + Number(collection_eweight[i].value)
-    }
+    // //getting values of engine weight
+    // let collection_eweight = document.getElementsByClassName("eweight");
+    // for (let i = 1; i < collection_eweight.length; i++) {
+    //     total_engineWeight = total_engineWeight + Number(collection_eweight[i].value)
+    // }
 
-    //getting values of tender weight
-    let collection_tweight = document.getElementsByClassName("tweight");
-    for (let i = 1; i < collection_tweight.length; i++) {
-        total_tenderWeight = total_tenderWeight + Number(collection_tweight[i].value)
-    }
+    // //getting values of tender weight
+    // let collection_tweight = document.getElementsByClassName("tweight");
+    // for (let i = 1; i < collection_tweight.length; i++) {
+    //     total_tenderWeight = total_tenderWeight + Number(collection_tweight[i].value)
+    // }
 
     //getting values of Loaded cargo weight
     let collection_Loaded = document.getElementsByClassName("Loaded");
@@ -139,7 +155,7 @@ const total_trainwt = () => {
         total_cargoWeight = total_cargoWeight + Number(collection_Loaded[i].value)
     }
 
-    total_train_weight = total_engineWeight + total_tenderWeight + total_cargoWeight
+    total_train_weight = total_cargoWeight
 
     return total_train_weight
 }
@@ -170,7 +186,7 @@ const total_maxPull = () => {
         total_tractiveEffort = total_tractiveEffort + Number(collection_teffort[i].value)
     }
 
-    max_pull = (total_tractiveEffort / ($grade.value * grade_resistance + rolling_resistance) - (total_engineWeight + total_tenderWeight))
+    max_pull = (total_tractiveEffort / ($grade.value * grade_resistance + rolling_resistance)) - (total_engineWeight + total_tenderWeight)
 
     return max_pull
 }

@@ -4,81 +4,63 @@ const engineList = [
         engine: "Select Engine",
         teffort: "",
         engineWeight: "",
-        engineWeightTon: "",
         tenderWeight: "",
-        tenderWeightTon: "",
         tenderAvailable: false
     },
     {
         engine: "CLIMAX",
         teffort: 17210,
         engineWeight: 53339,
-        engineWeightTon: 26.7,
         tenderWeight: 0,
-        tenderWeightTon: 0,
         tenderAvailable: false
     },
     {
         engine: "D&RG CLASS 70",
         teffort: 15468,
-        engineWeight: 74104,
-        engineWeightTon: 37.1,
-        tenderWeight: 53000,
-        tenderWeightTon: 26.5,
+        engineWeight: 74105,
+        tenderWeight: 20095,
         tenderAvailable: true
     },
     {
         engine: "HEISLER",
         teffort: 13010,
-        engineWeight: 61870,
-        engineWeightTon: 30.9,
+        engineWeight: 61871,
         tenderWeight: 0,
-        tenderWeightTon: 0,
         tenderAvailable: false
     },
     {
         engine: "COOKE MOGUL",
         teffort: 11872,
-        engineWeight: 58176,
-        engineWeightTon: 29.1,
-        tenderWeight: 45000,
-        tenderWeightTon: 22.5,
+        engineWeight: 58177,
+        tenderWeight: 21602,
         tenderAvailable: true
     },
     {
         engine: "EUREKA",
         teffort: 5620,
         engineWeight: 37840,
-        engineWeightTon: 18.9,
-        tenderWeight: 27573,
-        tenderWeightTon: 13.8,
+        tenderWeight: 13200,
         tenderAvailable: true
     },
     {
         engine: "PORTER 1 (BETSY)",
         teffort: 2870,
         engineWeight: 15965,
-        engineWeightTon: 8.0,
         tenderWeight: 0,
-        tenderWeightTon: 0,
         tenderAvailable: false
     },
     {
         engine: "PORTER 2",
         teffort: 2870,
         engineWeight: 17956,
-        engineWeightTon: 9.0,
         tenderWeight: 0,
-        tenderWeightTon: 0,
         tenderAvailable: false
     },
     {
         engine: "HANDCAR",
         teffort: 112,
         engineWeight: 2200,
-        engineWeightTon: 1.1,
         tenderWeight: 0,
-        tenderWeightTon: 0,
         tenderAvailable: false
     }
 ]
@@ -132,10 +114,10 @@ const cargoList = [
         frightCar: "Flatcar - Rounds"
     },
     {
-        cargoType: "Steel Pipe",
-        unitPercar: 9,
-        unitWeight: 3968,
-        frightCar: "Flatcar - Rounds"
+        cargoType: "Cordwood",
+        unitPercar: 8,
+        unitWeight: 2645,
+        frightCar: "Flatcar - Bulkhead"
     },
     {
         cargoType: "Lumber",
@@ -162,10 +144,10 @@ const cargoList = [
         frightCar: "Flatcar - Stakes"
     },
     {
-        cargoType: "Cordwood",
-        unitPercar: 8,
-        unitWeight: 2645,
-        frightCar: "Flatcar - Bulkhead"
+        cargoType: "Steel Pipe",
+        unitPercar: 9,
+        unitWeight: 3968,
+        frightCar: "Flatcar - Rounds"
     },
     {
         cargoType: "Oil Barrel",
