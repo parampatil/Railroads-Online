@@ -2,6 +2,7 @@
 const $clearWorkspace = document.getElementById("clearWorkspace")
 let current_weightUnit
 let current_openModal = ""
+let autosave = true
 
 //modal content
 
@@ -17,9 +18,24 @@ const onLoad_fun = () => {
     current_weightUnit = "lbs"
 
     // showInfoWindow()
-    welcome_modal_open()
 
     $kg.style.visibility = 'hidden'
+    if(JSON.parse(localStorage.getItem("diff_grade")) !== null){
+        if(JSON.parse(localStorage.getItem("diff_grade")).autosave == true){
+            load_diff_grade_unit()
+            load_engineList()
+            load_cargoList()
+        }
+        else if (JSON.parse(localStorage.getItem("diff_grade")).autosave == false){
+            document.getElementById("toggle_checkbox").checked = false
+            autosave = false
+            save_diff_grade_unit()
+        }
+    }
+    else {
+        welcome_modal_open()
+        save_diff_grade_unit()
+    }
 }
 
 //eventlisteners - engines
@@ -42,9 +58,15 @@ $cargoList.addEventListener('change', onCargoSelect)
 //eventlisteners - lbs_ton toggle
 $weight_toggle.addEventListener('change', () => {
     update_weightUnit()
+    if (autosave==true) {
+        save_diff_grade_unit()
+    }
 })
 
 const update_weightUnit = () => {
+    //Checked is Ton
+    //Unchecked is lbs
+
     if ($weight_toggle.checked === true && current_weightUnit === "lbs") {
         lbs_to_ton()
         update_result()
@@ -169,19 +191,22 @@ const cw_optionSelector = () => {
     if (current_openModal === "engines") {
         $engines.innerHTML=""
         cw_modal_close()
-        update_result()
+        update_values()
+        localStorage.removeItem("engines")
     }
     else if (current_openModal === "cargo") {
         $cargoList.innerHTML=""
         cw_modal_close()
-        update_result()
+        update_values()
+        localStorage.removeItem("cargo")
     }
     else if (current_openModal === "all") {
         $engines.innerHTML=""
         $cargoList.innerHTML=""
         $clearWorkspace.style.display="none"
         cw_modal_close()
-        update_result()
+        update_values()
+        localStorage.clear()
     }
 }
 
@@ -195,35 +220,37 @@ const alert_modal_open = (msg) => {
     document.querySelector(".alert-modal-content").innerHTML = msg;
 }
 
-
 //Custom select Grade
-$(".custom-select").each(function() {
-    var classes = $(this).attr("class"),
-        id      = $(this).attr("id"),
-        name    = $(this).attr("name");
-    var template =  '<div class="' + classes + '">';
-        template += '<span class="custom-select-trigger" id="sel_' + id + '" name="sel_' + name + '">';
-        $(this).find("option").each(function() {
-            if ($(this).attr("selected") === "selected") {
-                template += $(this).html();
-            }
+    $(".custom-select").each(function() {
+        var classes = $(this).attr("class"),
+            id      = $(this).attr("id"),
+            name    = $(this).attr("name"),
+            all_classes = classes.split(" ");
+        var template =  '<div class="' + classes + '">';
+            template += '<span class="custom-select-trigger" id="sel_' + id + '" name="sel_' + name + '">';
+            $(this).find("option").each(function() {
+                if ($(this).attr("selected") === "selected") {
+                    template += $(this).html();
+                }
+            });
+            template += '</span>';
+            template += '<div class="custom-options ' + all_classes[1] + '">';
+            $(this).find("option").each(function() {
+            template += '<span class="custom-option ' + all_classes[1] + '" data-value="' + $(this).attr("value") + '">' + $(this).html() + '</span>';
         });
-        template += '</span>';
-        template += '<div class="custom-options">';
-        $(this).find("option").each(function() {
-          template += '<span class="custom-option ' + $(this).attr("class") + '" data-value="' + $(this).attr("value") + '">' + $(this).html() + '</span>';
-        });
+            
+        template += '</div></div>';
         
-    template += '</div></div>';
-    
-    $(this).wrap('<div class="custom-select-wrapper"></div>');
-    $(this).hide();
-    $(this).after(template);
-  });
+        $(this).wrap('<div class="custom-select-wrapper ' + id + '"></div>');
+        $(this).hide();
+        $(this).after(template);
+    });
+
   $(".custom-option:first-of-type").hover(function() {
     $(this).parents(".custom-options").addClass("option-hover");
   }, function() {
     $(this).parents(".custom-options").removeClass("option-hover");
+
   });
   $(".custom-select-trigger").on("click", function() {
     $('html').one('click',function() {
@@ -231,9 +258,11 @@ $(".custom-select").each(function() {
     });
     $(this).parents(".custom-select").toggleClass("opened");
     event.stopPropagation();
+
   });
 
   $(".custom-option").on("click", function() {
+
     $(this).parents(".custom-select-wrapper").find("select").val($(this).data("value"));
     $(this).parents(".custom-options").find(".custom-option").removeClass("selection");
     $(this).addClass("selection");
@@ -244,4 +273,28 @@ $(".custom-select").each(function() {
         onCargoSelect(collection_cargodiv[i])
     }
     update_values()
+    if (autosave==true) {
+        save_diff_grade_unit()
+    }
   });
+
+//   Auto Save Function
+
+const autosave_function = () => {
+    //checked=True: autosave On
+    //checked=False: autosave Off
+
+    if (document.getElementById("toggle_checkbox").checked == true) {
+        save_diff_grade_unit()
+        save_engineList()
+        save_cargoList()
+        autosave = true 
+        save_diff_grade_unit()
+    }
+    else{
+        autosave = false
+        save_diff_grade_unit()
+        localStorage.removeItem("engines")
+        localStorage.removeItem("cargo")
+    }
+}

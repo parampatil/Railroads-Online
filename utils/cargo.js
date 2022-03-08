@@ -207,6 +207,10 @@ const onCargoSelect = (e) => {
         }
     }
     update_values()
+    if (autosave==true) {
+        save_cargoList()
+    }
+    
 }
 
 //Delete Cargo
@@ -214,4 +218,40 @@ const delete_cargo_function = (e) => {
     to_delete = e.target.parentElement
     to_delete.remove()
     update_values()
+    if (autosave==true) {
+        save_cargoList()
+    }
+}
+
+const save_cargoList = () => {
+    let collection_cargoType = document.getElementsByClassName("cargoType");
+    let collection_QTY = document.getElementsByClassName("QTY");
+    let collection_Noofcars = document.getElementsByClassName("Noofcars");
+    let cargo_items_list = []
+    for (let i = 1; i < collection_cargoType.length; i++) {
+        let cargo_items = {}
+        cargo_items['cargoType'] = collection_cargoType[i].value;
+        cargo_items['QTY'] = collection_QTY[i].value;
+        cargo_items['Noofcars'] = collection_Noofcars[i].value;
+        cargo_items_list.push(cargo_items)
+    }
+    localStorage.setItem('cargo', JSON.stringify(cargo_items_list));
+}
+
+const load_cargoList = () => {
+    let cargo_items_list = JSON.parse(localStorage.getItem('cargo'))
+    if(cargo_items_list !== null){
+        cargo_items_list.forEach(function(cargo, i){
+            addCargo()
+            let collection_cargoType = document.getElementsByClassName("cargoType")
+            let collection_QTY = document.getElementsByClassName("QTY")
+            let collection_Noofcars = document.getElementsByClassName("Noofcars")
+
+            collection_cargoType[i+1].value = cargo.cargoType
+            onCargoSelect({ target: collection_cargoType[i+1] })
+            collection_QTY[i+1].value = cargo.QTY
+            collection_Noofcars[i+1].value = cargo.Noofcars
+            onCargoSelect({ target: collection_Noofcars[i+1] })
+        });
+    }
 }

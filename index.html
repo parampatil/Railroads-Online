@@ -36,8 +36,10 @@
                 <h2>Home</h2>
             </div> -->
             <div class="right__side__controls">
+                <div class="menu-overlay" onclick="menu_overlay_close()">
+                </div>
                 <div id="menuToggle">
-                    <input type="checkbox" />
+                    <input type="checkbox" onclick="menu_overlay_open()" id="menu-checkbox"/>
                     <span></span>
                     <span></span>
                     <span></span>
@@ -180,6 +182,7 @@
 
         <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
         <script src="https://kit.fontawesome.com/9158aae58b.js" crossorigin="anonymous"></script>
+        <script src="./utils/menu.js"></script>
         <script src="./utils/script.js"></script>
     </div>  
 </body>

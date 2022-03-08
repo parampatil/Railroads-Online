@@ -257,19 +257,21 @@ html {
 
 /* Weight Unit toggle */
 .toggle-button-cover {
+  padding: 2px;
   display: table-cell;
   position: relative;
   width: 80px;
-  height: 30px;
+  height: 32px;
   box-sizing: border-box;
+  border-radius: 50px;
+  border: rgb(14, 132, 175) solid 2px;
 }
 
 .button-cover {
-  height: 50px;
-  margin: -10px 10px;
-  /* background-color: #fff; */
-  /* box-shadow: 0 10px 20px -8px #c5d6d6; */
-  border-radius: 4px;
+  height: 32px;
+  width: 80px;
+  margin: 0px 0px;
+  border-radius: 50px;
 }
 
 .button-cover:before {
@@ -295,7 +297,7 @@ html {
 .button {
   position: relative;
   top: 50%;
-  width: 60px;
+  width: 80px;
   height: 30px;
   margin: -15px auto 0 auto;
   overflow: hidden;
@@ -359,17 +361,14 @@ html {
 
 #button-4 .knobs:before {
   content: "lbs";
+  top: 17px;
 }
 
 #button-4 .knobs:after {
   content: "ton";
-}
-
-#button-4 .knobs:after {
-  /* content: "NO"; */
   top: -28px;
-  right: 4px;
-  left: auto;
+  right: 0px;
+  left: 48px;
   background-color: #f44336;
 }
 
@@ -378,7 +377,7 @@ html {
 }
 
 #button-4 .checkbox:checked + .knobs:after {
-  top: 18px;
+  top: 17px;
 }
 
 #button-4 .checkbox:checked ~ .layer {
@@ -403,13 +402,15 @@ html {
   display: block;
   padding: 0 30px 0 10px;
   width: 85px;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 300;
   color: rgb(3, 31, 41);
-  line-height: 30px;
+  line-height: 25px;
   background: #ffffff;
   border-radius: 4px;
   cursor: pointer;
+  margin: 0px 10px;
+  top: 8px;
 }
 
 .custom-select-trigger#sel_grade {
@@ -443,7 +444,7 @@ html {
   left: 0;
   right: 0;
   min-width: 100%;
-  max-height: 80vh;
+  max-height: 60vh;
   overflow-y: overlay;
   margin: 15px 0;
   border: 1px solid #b5b5b5;
@@ -505,6 +506,8 @@ html {
 .custom-option.selection {
   background: #f9f9f9;
 }
+
+/* Righr side controls label */
 
 /* Select */
 /* .select-custom {
@@ -578,6 +581,26 @@ html {
 }
 
 /* Hamburger Menu */
+
+.menu-overlay {
+  visibility: hidden;
+  transition: all 0.4s;
+  opacity: 0;
+}
+.menu-overlay.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 0;
+}
+
 #menuToggle {
   display: block;
   position: relative;
@@ -926,4 +949,110 @@ html {
     inset 0 1px rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25),
     inset 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Autosave Toggle */
+.autosave {
+  position: relative;
+  top: 150px;
+  width: 14vw;
+}
+
+#toggle_checkbox {
+  display: none;
+}
+
+#AS_label {
+  display: block;
+  width: 120px;
+  height: 50px;
+  transform: translateY(0%);
+  cursor: pointer;
+  margin: auto;
+}
+
+#AS_label:before {
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  border: 3px solid red;
+}
+
+#AS_label:after {
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 50px;
+  border: 3px solid #143240;
+}
+
+#AS_label:before,
+#AS_label:after {
+  content: "";
+  position: absolute;
+  border-radius: 50px;
+  box-sizing: border-box;
+  transition: 0.5s ease top, 0.5s ease left, 0.5s ease right, 0.5s ease width,
+    0.5s ease height, 0.5s ease border-color;
+}
+
+#toggle_checkbox:checked + #AS_label:before {
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 50px;
+  border-color: #143240;
+}
+
+#toggle_checkbox:checked + #AS_label:after {
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-color: rgb(0, 255, 34);
+}
+
+#autosave_label {
+  display: block;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 5px;
+}
+
+#autosave_label_OFF {
+  display: block;
+  color: red;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 5px;
+}
+
+/* #autosave_label_ON::before {
+  display: block;
+  color: rgb(0, 255, 34);
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 5px;
+} */
+
+#toggle_checkbox:checked ~ #AS_labels #autosave_label_OFF {
+  display: none;
+}
+
+#autosave_label_ON {
+  display: none;
+}
+
+#toggle_checkbox:checked ~ #AS_labels #autosave_label_ON {
+  display: block;
+  color: rgb(0, 255, 34);
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 5px;
 }

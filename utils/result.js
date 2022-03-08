@@ -37,7 +37,7 @@ const update_values = () => {
     }
 }
 
-const update_result = () => {
+const update_result = () => {  
     if ($engines.innerHTML == "" && $cargoList.innerHTML == "") {
         count = 0
         countCargo = 0
@@ -87,6 +87,8 @@ const update_result = () => {
             }
             $max_pull_progress.style.width = (max_pull / max_pull * 100).toFixed(0) + "%"
             $max_pull_progress.style.backgroundColor = "rgb(75, 236, 75)"
+            
+
 
         } else if (net_effort < 0) {
             $resultList.childNodes[5].style.color = "red"
@@ -116,6 +118,8 @@ const update_result = () => {
             $max_pull_progress.style.width = (max_pull / total_train_weight * 100).toFixed(0) + "%"
             $train_weight_progress.style.backgroundColor = "rgb(255, 0, 0)"
             $max_pull_progress.style.backgroundColor = "rgb(255, 165, 0)"
+
+
         } else {
             $result_heading_last.innerHTML = "How much more you can pull / need to pull"
             $resultList.childNodes[5].style.color = "white"
@@ -185,8 +189,38 @@ const total_maxPull = () => {
     for (let i = 1; i < collection_teffort.length; i++) {
         total_tractiveEffort = total_tractiveEffort + Number(collection_teffort[i].value)
     }
-
     max_pull = (total_tractiveEffort / ($grade.value * grade_resistance + rolling_resistance)) - (total_engineWeight + total_tenderWeight)
 
     return max_pull
+
+}
+
+const save_diff_grade_unit = () => {
+    let diff_grade_items = {}
+    diff_grade_items['difficulty'] = $difficulty.value;
+    diff_grade_items['grade'] = $grade.value;
+    diff_grade_items['unit'] = current_weightUnit;
+    diff_grade_items['autosave'] = autosave;
+    localStorage.setItem("diff_grade", JSON.stringify(diff_grade_items))
+}
+
+const load_diff_grade_unit = () => {
+    let diff_grade_items = JSON.parse(localStorage.getItem("diff_grade"))
+    if (diff_grade_items !== null) {
+        $(".custom-select-wrapper.grade").find("select").val( diff_grade_items.grade)
+        $("#sel_grade").text(diff_grade_items.grade)
+        $(".custom-select-wrapper.difficulty").find("select").val( diff_grade_items.difficulty)
+        $("#sel_difficulty").text(diff_grade_items.difficulty)
+        document.getElementsByClassName("custom-options difficulty")[0].childNodes.forEach(element => {
+            if ($(element).attr("data-value") == diff_grade_items.difficulty) {
+                $("#sel_difficulty").text(element.innerHTML)    
+            }
+        });
+        if (diff_grade_items.unit === "ton") {
+            $weight_toggle.checked = true
+            current_weightUnit = "lbs"
+            update_weightUnit()
+        }
+        autosave = diff_grade_items.autosave
+    }
 }

@@ -81,8 +81,10 @@
                                 </div>
 
                                 <!-- Hamburger Menu -->
+                                <div class="menu-overlay" onclick="menu_overlay_close()">
+                                </div>
                                 <div id="menuToggle">
-                                        <input type="checkbox" />
+                                    <input type="checkbox" onclick="menu_overlay_open()" id="menu-checkbox">
                                         <span></span>
                                         <span></span>
                                         <span></span>
@@ -322,6 +324,7 @@
         </div>
 
         <!-- Javascript -->
+        <script src="./utils/menu.js"></script>
         <script src="./utils/resource_calculator.js"></script>
 </body>
 

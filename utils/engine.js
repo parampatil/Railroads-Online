@@ -115,6 +115,9 @@ const onEngineSelect = (e) => {
         }
     }
     update_values()
+    if (autosave==true) {
+        save_engineList()
+    }
 }
 
 //Delete Engine
@@ -122,5 +125,33 @@ const delete_engine_function = (e) => {
     to_delete = e.target.parentElement
     to_delete.remove()
     update_values()
+    if (autosave==true) {
+        save_engineList()
+    }
 }
 
+const save_engineList = () => {
+    //getting values of engine name
+    let collection_eweight = document.getElementsByClassName("engine");
+    let engine_items_list = []
+    for (let i = 1; i < collection_eweight.length; i++) {
+        engine_items_list.push(collection_eweight[i].value)
+    }
+    // localStorage.removeItem('engines')
+    localStorage.setItem('engines', JSON.stringify(engine_items_list));
+}
+
+const load_engineList = () => {
+    let engine_items_list = JSON.parse(localStorage.getItem('engines'))
+    if(engine_items_list){
+        engine_items_list.forEach(function(engine, i){
+            addEngine()
+            let engine_select = document.getElementsByClassName("engine")
+            engine_select[i+1].value = engine
+            onEngineSelect({ target: engine_select[i+1] })
+        });
+    }
+}
+
+
+    

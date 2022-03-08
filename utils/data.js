@@ -69,6 +69,10 @@ const engineList = [
 
 const frightList = [
     {
+        fright: "",
+        frightCarWeight: "",
+    },
+    {
         frightCar: "Flatcar - Rounds",
         frightCarWeight: 8360,
     },

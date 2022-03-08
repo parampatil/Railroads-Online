@@ -108,12 +108,34 @@ body {
   height: 35px;
 }
 
-.controls label {
-  margin-left: 5px;
-  margin-right: 5px;
-  color: red;
-  font-size: large;
-  padding: 5px;
+#diff_label,
+#grade_label {
+  position: absolute;
+  top: 8px;
+  color: rgb(255, 255, 255);
+  background: rgb(0, 187, 255);
+  border-radius: 5px;
+  letter-spacing: 2px;
+  font-size: 12px;
+  width: 125px;
+  padding: 0px 0px 10px 0px;
+  margin: 0px 10px;
+  text-align: center;
+}
+
+#grade_label {
+  width: 85px;
+}
+
+#diff_div,
+#grade_div {
+  display: flex;
+  flex-direction: column;
+}
+
+#diff_div:hover .controls label {
+  background: rgb(255, 196, 0);
+  color: rgb(0, 0, 0);
 }
 
 #pounds,
