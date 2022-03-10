@@ -78,7 +78,6 @@ body {
     font-size: 25px;
     letter-spacing: 5px;
     flex-grow: 1;
-
   }
 }
 
@@ -129,6 +128,8 @@ body {
   position: relative;
   left: 0;
   z-index: 0;
+  background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+  background-size: 200% 200%;
 }
 
 .facilities {
@@ -183,7 +184,8 @@ body {
 .other-facilities {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: start;
+  flex-wrap: wrap;
   align-items: top;
   background-color: white;
   padding: 20px;
@@ -197,6 +199,7 @@ body {
   );
   background-size: 200% 200%;
   animation: gradient 5s ease infinite;
+  width: 100%;
 }
 
 .other-facilities h2 {

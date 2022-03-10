@@ -1056,3 +1056,27 @@ html {
   text-align: center;
   padding: 5px;
 }
+
+/* Alt text css */
+
+[data-title]:hover:after {
+  opacity: 1;
+  transition: all 0.2s ease 0.6s;
+  visibility: visible;
+  margin-top: 10px;
+  z-index: 100;
+  font-family: lato !important;
+}
+[data-title]:after {
+  font-size: 15px !important;
+  content: attr(data-title);
+  display: flex;
+  position: absolute;
+  padding: 4px 8px 4px 8px;
+  color: #222;
+  border-radius: 3px;
+  border: none;
+  box-shadow: 0px 0px 15px #222;
+  background-color: #ffffff;
+  visibility: hidden;
+}
