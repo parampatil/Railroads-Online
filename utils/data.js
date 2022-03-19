@@ -1,192 +1,275 @@
 // By default weights are in pounds.
 const engineList = [
-    {
-        engine: "Select Engine",
-        teffort: "",
-        engineWeight: "",
-        tenderWeight: "",
-        tenderAvailable: false
-    },
-    {
-        engine: "CLIMAX",
-        teffort: 17210,
-        engineWeight: 53339,
-        tenderWeight: 0,
-        tenderAvailable: false
-    },
-    {
-        engine: "D&RG CLASS 70",
-        teffort: 15468,
-        engineWeight: 74105,
-        tenderWeight: 20095,
-        tenderAvailable: true
-    },
-    {
-        engine: "HEISLER",
-        teffort: 13010,
-        engineWeight: 61871,
-        tenderWeight: 0,
-        tenderAvailable: false
-    },
-    {
-        engine: "COOKE MOGUL",
-        teffort: 11872,
-        engineWeight: 58177,
-        tenderWeight: 21602,
-        tenderAvailable: true
-    },
-    {
-        engine: "EUREKA",
-        teffort: 5620,
-        engineWeight: 37840,
-        tenderWeight: 13200,
-        tenderAvailable: true
-    },
-    {
-        engine: "PORTER 1 (BETSY)",
-        teffort: 2870,
-        engineWeight: 15965,
-        tenderWeight: 0,
-        tenderAvailable: false
-    },
-    {
-        engine: "PORTER 2",
-        teffort: 2870,
-        engineWeight: 17956,
-        tenderWeight: 0,
-        tenderAvailable: false
-    },
-    {
-        engine: "HANDCAR",
-        teffort: 112,
-        engineWeight: 2200,
-        tenderWeight: 0,
-        tenderAvailable: false
-    }
-]
+  {
+    engine: "Select Engine",
+    teffort_kg: "",
+    teffort_lbs: "",
+    engineWeight_emp_kg: "",
+    engineWeight_emp_lbs: "",
+    engineWeight_full_kg: "",
+    engineWeight_full_lbs: "",
+    tenderWeight_emp_kg: "",
+    tenderWeight_emp_lbs: "",
+    tenderWeight_full_kg: "",
+    tenderWeight_full_lbs: "",
+    tenderAvailable: false,
+  },
+  {
+    engine: "CLIMAX",
+    teffort_kg: "77.78",
+    teffort_lbs: "17486",
+    engineWeight_emp_kg: "21256",
+    engineWeight_emp_lbs: "46861",
+    engineWeight_full_kg: "25256",
+    engineWeight_full_lbs: "55678",
+    tenderWeight_emp_kg: "0",
+    tenderWeight_emp_lbs: "0",
+    tenderWeight_full_kg: "3000",
+    tenderWeight_full_lbs: "6614",
+    tenderAvailable: false,
+  },
+  {
+    engine: "D&RG CLASS 70",
+    teffort_kg: "69.91",
+    teffort_lbs: "15716",
+    engineWeight_emp_kg: "27684",
+    engineWeight_emp_lbs: "61032",
+    engineWeight_full_kg: "33684",
+    engineWeight_full_lbs: "74260",
+    tenderWeight_emp_kg: "14540",
+    tenderWeight_emp_lbs: "32056",
+    tenderWeight_full_kg: "24040",
+    tenderWeight_full_lbs: "53000",
+    tenderAvailable: true,
+  },
+  {
+    engine: "HEISLER",
+    teffort_kg: "58.80",
+    teffort_lbs: "13219",
+    engineWeight_emp_kg: "24815",
+    engineWeight_emp_lbs: "54708",
+    engineWeight_full_kg: "29815",
+    engineWeight_full_lbs: "65731",
+    tenderWeight_emp_kg: "0",
+    tenderWeight_emp_lbs: "0",
+    tenderWeight_full_kg: "3000",
+    tenderWeight_full_lbs: "6614",
+    tenderAvailable: false,
+  },
+  {
+    engine: "COOKE MOGUL",
+    teffort_kg: "53.66",
+    teffort_lbs: "12063",
+    engineWeight_emp_kg: "21444",
+    engineWeight_emp_lbs: "47277",
+    engineWeight_full_kg: "26444",
+    engineWeight_full_lbs: "58300",
+    tenderWeight_emp_kg: "10912",
+    tenderWeight_emp_lbs: "24056",
+    tenderWeight_full_kg: "20412",
+    tenderWeight_full_lbs: "45000",
+    tenderAvailable: true,
+  },
+  {
+    engine: "EUREKA",
+    teffort_kg: "25.00",
+    teffort_lbs: "5620",
+    engineWeight_emp_kg: "12200",
+    engineWeight_emp_lbs: "26896",
+    engineWeight_full_kg: "17200",
+    engineWeight_full_lbs: "37919",
+    tenderWeight_emp_kg: "8707",
+    tenderWeight_emp_lbs: "19195",
+    tenderWeight_full_kg: "12507",
+    tenderWeight_full_lbs: "27573",
+    tenderAvailable: true,
+  },
+  {
+    engine: "PORTER 1 (BETSY)",
+    teffort_kg: "12.97",
+    teffort_lbs: "2916",
+    engineWeight_emp_kg: "5958",
+    engineWeight_emp_lbs: "13134",
+    engineWeight_full_kg: "6458",
+    engineWeight_full_lbs: "14236",
+    tenderWeight_emp_kg: "0",
+    tenderWeight_emp_lbs: "0",
+    tenderWeight_full_kg: "800",
+    tenderWeight_full_lbs: "1764",
+    tenderAvailable: false,
+  },
+  {
+    engine: "PORTER 2",
+    teffort_kg: "12.97",
+    teffort_lbs: "2916",
+    engineWeight_emp_kg: "6865",
+    engineWeight_emp_lbs: "15134",
+    engineWeight_full_kg: "7365",
+    engineWeight_full_lbs: "16236",
+    tenderWeight_emp_kg: "0",
+    tenderWeight_emp_lbs: "0",
+    tenderWeight_full_kg: "800",
+    tenderWeight_full_lbs: "1764",
+    tenderAvailable: false,
+  },
+  {
+    engine: "HANDCAR",
+    teffort_kg: "0.50",
+    teffort_lbs: "112",
+    engineWeight_emp_kg: "1000",
+    engineWeight_emp_lbs: "2205",
+    engineWeight_full_kg: "1000",
+    engineWeight_full_lbs: "2205",
+    tenderWeight_emp_kg: "0",
+    tenderWeight_emp_lbs: "0",
+    tenderWeight_full_kg: "0",
+    tenderWeight_full_lbs: "0",
+    tenderAvailable: false,
+  },
+];
 
 //FrightList container
 
 const frightList = [
-    {
-        fright: "",
-        frightCarWeight: "",
-    },
-    {
-        frightCar: "Flatcar - Rounds",
-        frightCarWeight: 8360,
-    },
-    {
-        frightCar: "Flatcar - Stakes",
-        frightCarWeight: 8800,
-    },
-    {
-        frightCar: "Flatcar - Bulkhead",
-        frightCarWeight: 9020,
-    },
-    {
-        frightCar: "Hopper",
-        frightCarWeight: 13200,
-    },
-    {
-        frightCar: "Tanker",
-        frightCarWeight: 30135,
-    },
-    {
-        frightCar: "Box Car",
-        frightCarWeight: 17463,
-    },
-    {
-        frightCar: "Bobber Caboose",
-        frightCarWeight: 11880,
-    },
-]
-
+  {
+    fright: "",
+    frightCarWeight: "",
+  },
+  {
+    frightCar: "Flatcar - Rounds",
+    frightCarWeight_lbs: 8360,
+    frightCarWeight_kg: 3792,
+  },
+  {
+    frightCar: "Flatcar - Stakes",
+    frightCarWeight_lbs: 8800,
+    frightCarWeight_kg: 3992,
+  },
+  {
+    frightCar: "Flatcar - Bulkhead",
+    frightCarWeight_lbs: 9020,
+    frightCarWeight_kg: 4091,
+  },
+  {
+    frightCar: "Hopper",
+    frightCarWeight_lbs: 13200,
+    frightCarWeight_kg: 5987,
+  },
+  {
+    frightCar: "Tanker",
+    frightCarWeight_lbs: 30135,
+    frightCarWeight_kg: 12699,
+  },
+  {
+    frightCar: "Box Car",
+    frightCarWeight_lbs: 17463,
+    frightCarWeight_kg: 7921,
+  },
+  {
+    frightCar: "Bobber Caboose",
+    frightCarWeight_lbs: 11880,
+    frightCarWeight_kg: 5389,
+  },
+];
 
 //CargoList container
 const cargoList = [
-    {
-        cargoType: "Select Cargo",
-        unitPercar: 0,
-        unitWeight: 0,
-        frightCar: ""
-    },
-    {
-        cargoType: "Logs",
-        unitPercar: 6,
-        unitWeight: 4409,
-        frightCar: "Flatcar - Rounds"
-    },
-    {
-        cargoType: "Cordwood",
-        unitPercar: 8,
-        unitWeight: 2645,
-        frightCar: "Flatcar - Bulkhead"
-    },
-    {
-        cargoType: "Lumber",
-        unitPercar: 6,
-        unitWeight: 2976,
-        frightCar: "Flatcar - Stakes"
-    },
-    {
-        cargoType: "Beam",
-        unitPercar: 3,
-        unitWeight: 3108,
-        frightCar: "Flatcar - Stakes"
-    },
-    {
-        cargoType: "Raw Iron",
-        unitPercar: 3,
-        unitWeight: 3284,
-        frightCar: "Flatcar - Stakes"
-    },
-    {
-        cargoType: "Rail",
-        unitPercar: 10,
-        unitWeight: 1984,
-        frightCar: "Flatcar - Stakes"
-    },
-    {
-        cargoType: "Steel Pipe",
-        unitPercar: 9,
-        unitWeight: 3968,
-        frightCar: "Flatcar - Rounds"
-    },
-    {
-        cargoType: "Oil Barrel",
-        unitPercar: 46,
-        unitWeight: 302,
-        frightCar: "Flatcar - Bulkhead"
-    },
-    {
-        cargoType: "Iron Ore",
-        unitPercar: 10,
-        unitWeight: 2204,
-        frightCar: "Hopper"
-    },
-    {
-        cargoType: "Coal",
-        unitPercar: 10,
-        unitWeight: 2204,
-        frightCar: "Hopper"
-    },
-    {
-        cargoType: "Crude Oil",
-        unitPercar: 12,
-        unitWeight: 2204,
-        frightCar: "Tanker"
-    },
-    {
-        cargoType: "Crate Tools",
-        unitPercar: 32,
-        unitWeight: 220,
-        frightCar: "Box Car"
-    },
-    {
-        cargoType: "Bobber Caboose",
-        unitPercar: 1,
-        unitWeight: 0,
-        frightCar: "Bobber Caboose"
-    },
-]
+  {
+    cargoType: "Select Cargo",
+    unitPercar: 0,
+    unitWeight_lbs: 0,
+    unitWeight_kg: 0,
+    frightCar: "",
+  },
+  {
+    cargoType: "Logs",
+    unitPercar: 6,
+    unitWeight_lbs: 4409,
+    unitWeight_kg: 2000,
+    frightCar: "Flatcar - Rounds",
+  },
+  {
+    cargoType: "Cordwood",
+    unitPercar: 8,
+    unitWeight_lbs: 2646,
+    unitWeight_kg: 1200,
+    frightCar: "Flatcar - Bulkhead",
+  },
+  {
+    cargoType: "Lumber",
+    unitPercar: 6,
+    unitWeight_lbs: 2976,
+    unitWeight_kg: 1350,
+    frightCar: "Flatcar - Stakes",
+  },
+  {
+    cargoType: "Beam",
+    unitPercar: 3,
+    unitWeight_lbs: 3109,
+    unitWeight_kg: 1410,
+    frightCar: "Flatcar - Stakes",
+  },
+  {
+    cargoType: "Raw Iron",
+    unitPercar: 3,
+    unitWeight_lbs: 3285,
+    unitWeight_kg: 1490,
+    frightCar: "Flatcar - Stakes",
+  },
+  {
+    cargoType: "Rail",
+    unitPercar: 10,
+    unitWeight_lbs: 1984,
+    unitWeight_kg: 900,
+    frightCar: "Flatcar - Stakes",
+  },
+  {
+    cargoType: "Steel Pipe",
+    unitPercar: 9,
+    unitWeight_lbs: 3968,
+    unitWeight_kg: 1800,
+    frightCar: "Flatcar - Rounds",
+  },
+  {
+    cargoType: "Oil Barrel",
+    unitPercar: 46,
+    unitWeight_lbs: 302,
+    unitWeight_kg: 137,
+    frightCar: "Flatcar - Bulkhead",
+  },
+  {
+    cargoType: "Iron Ore",
+    unitPercar: 10,
+    unitWeight_lbs: 2205,
+    unitWeight_kg: 1000,
+    frightCar: "Hopper",
+  },
+  {
+    cargoType: "Coal",
+    unitPercar: 10,
+    unitWeight_lbs: 2205,
+    unitWeight_kg: 1000,
+    frightCar: "Hopper",
+  },
+  {
+    cargoType: "Crude Oil",
+    unitPercar: 12,
+    unitWeight_lbs: 2205,
+    unitWeight_kg: 1000,
+    frightCar: "Tanker",
+  },
+  {
+    cargoType: "Crate Tools",
+    unitPercar: 32,
+    unitWeight_lbs: 220,
+    unitWeight_kg: 100,
+    frightCar: "Box Car",
+  },
+  {
+    cargoType: "Bobber Caboose",
+    unitPercar: 1,
+    unitWeight_lbs: 0,
+    unitWeight_kg: 0,
+    frightCar: "Bobber Caboose",
+  },
+];

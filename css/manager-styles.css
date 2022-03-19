@@ -396,6 +396,19 @@ body {
   animation: append-animate 0.2s linear;
 }
 
+.unit-label {
+  position: relative;
+  /* top: 8px; */
+  width: 30px;
+  margin-left: -46px;
+  font-size: 1vw;
+  color: rgb(255, 255, 255);
+  letter-spacing: 1px;
+  text-align: center;
+  overflow: hidden;
+  padding: 8px;
+}
+
 /*Result container styles*/
 .result__view {
   flex-grow: 1;

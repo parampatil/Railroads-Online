@@ -360,12 +360,12 @@ html {
 }
 
 #button-4 .knobs:before {
-  content: "lbs";
+  content: "lb";
   top: 17px;
 }
 
 #button-4 .knobs:after {
-  content: "ton";
+  content: "kg";
   top: -28px;
   right: 0px;
   left: 48px;
