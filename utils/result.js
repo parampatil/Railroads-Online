@@ -34,7 +34,6 @@ let gravity_kg = 9.8067;
 //net effort (How much your engine can pull) = Max pull - Total train weight
 
 const update_result = () => {
-  console.log("update_result");
   if ($engines.innerHTML == "" && $cargoList.innerHTML == "") {
     count = 0;
     countCargo = 0;
@@ -81,7 +80,7 @@ const update_result = () => {
       $resultList.childNodes[5].style.color = "rgb(75, 236, 75)";
       $resultList.childNodes[7].style.color = "rgb(75, 236, 75)";
       $resultList.childNodes[7].value = percentFormat.format(
-        Number((total_train_weight / max_pull).toFixed(1))
+        Number(total_train_weight / max_pull)
       );
       // Message Properties
       $result_msg.style.visibility = "visible";
@@ -108,8 +107,6 @@ const update_result = () => {
       $resultList.childNodes[7].value = percentFormat.format(
         Number(total_train_weight / max_pull)
       );
-      console.log(total_train_weight.toFixed(0) / max_pull.toFixed(0));
-
       // Message Properties
       $result_msg.style.visibility = "visible";
       $result_msg.value = "Your train can't pull! Please add more engines";
